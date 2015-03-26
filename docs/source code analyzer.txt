@@ -1,0 +1,11 @@
+source code analyzer - sorsana
+
+we're developing a source code analyzer for php in php. 
+we're using a intermediate php component that generates abstract syntax tree(AST) from a php source code. 
+And we're using different static & dynamic program analysis algorithms & techniques on that AST to provide best suggestions, advice, feedback or errors (if any) to better optimize & refactor the code written in php. 
+
+this will be a basic console application that accepts source file or directory containing multiple files and a configuration xml file that specifies what kind of feedback is expected. And based on that xml file the app will analyze the source & generates a list of suggestions, advice, warnings, refactored code etc. 
+
+benifits:
+
+this will help developers to make their code follow best practices & coding standards, making it much more efficient & better optimized thus improving maintanability,  readability & reduce potential bugs before hand. 
