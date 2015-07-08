@@ -1,0 +1,20 @@
+#!/usr/bin/env php
+<?php
+/*
+|--------------------------------------------------------------------------
+| Require Composer's autoloader
+|--------------------------------------------------------------------------
+|
+*/
+foreach ([__DIR__ . '/../../../', __DIR__ . '/../vendor/', __DIR__ . '/vendor/'] as $dir) {
+    if (file_exists($file = $dir . 'autoload.php')) {
+        require $file;
+        break;
+    }
+}
+
+// Instantiate the Application
+$pharam = new Analyzer\Application();
+
+// Auto detects the configuration file from a Yaml file(pharam.yml) or
+$pharam->autodetectConfig()->run();

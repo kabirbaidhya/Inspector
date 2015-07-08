@@ -1,0 +1,15 @@
+{
+    "chmod": "0755",
+    "main": "bin/srca",
+    "output": "release/srca.phar",
+    "files": [
+        "LICENSE",
+        "README.md"
+    ],
+    "directories": [
+        "src/",
+        "config/",
+        "vendor/"
+    ],
+    "stub": true
+}
