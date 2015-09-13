@@ -3,13 +3,24 @@
     "main": "bin/srca",
     "output": "release/srca.phar",
     "files": [
-        "LICENSE",
         "README.md"
     ],
     "directories": [
         "src/",
         "config/",
         "vendor/"
+    ],
+    "finder": [
+        {
+            "name": "*.php",
+            "exclude": [
+                "Tests",
+                "tests",
+                "phpunit",
+                "var-dumper"
+            ],
+            "in": "vendor"
+        }
     ],
     "stub": true
 }

@@ -34,8 +34,6 @@ class InitCommand extends Command
 
         $fileSystem->copy($sourceFile, $destinationFile);
 
-        $output->writeln(sprintf('<comment>Creating %s file...</comment> <info>✔</info>',
-            Application::APP_DEFAULT_CONFIG));
-        $output->writeln('<comment>Config file created at:</comment> ' . getcwd());
+        $output->writeln('<comment>Config file generated at:</comment> ' . $destinationFile);
     }
 }

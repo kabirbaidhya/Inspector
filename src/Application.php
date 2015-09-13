@@ -2,13 +2,14 @@
 
 namespace Analyzer;
 
-use Analyzer\Console\Commands\AnalyzeCommand;
 use Analyzer\Console\IocBinder;
 use Analyzer\Console\ServiceContainer;
-use Analyzer\Console\AbstractApplication as ConsoleApplication;
+use Analyzer\Console\Commands\CCNCommand;
 use Analyzer\Console\Commands\InitCommand;
+use Analyzer\Console\Commands\AnalyzeCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Analyzer\Console\AbstractApplication as ConsoleApplication;
 
 class Application extends ConsoleApplication
 {
@@ -42,9 +43,15 @@ class Application extends ConsoleApplication
         return [
             InitCommand::class,
             AnalyzeCommand::class,
+            CCNCommand::class,
         ];
     }
 
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @return int
+     */
     public function run(InputInterface $input = null, OutputInterface $output = null)
     {
         $this->binder->postBind($this->getConfig());

@@ -1,11 +1,8 @@
 #!/usr/bin/env php
 <?php
-/*
-|--------------------------------------------------------------------------
-| Require Composer's autoloader
-|--------------------------------------------------------------------------
-|
-*/
+ini_set('xdebug.max_nesting_level', 3000);
+
+// Require Composer's autoloader
 foreach ([__DIR__ . '/../../../', __DIR__ . '/../vendor/', __DIR__ . '/vendor/'] as $dir) {
     if (file_exists($file = $dir . 'autoload.php')) {
         require $file;

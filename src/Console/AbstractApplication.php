@@ -18,7 +18,7 @@ abstract class AbstractApplication extends SymfonyApplication
     use ContainerAwareTrait;
 
     /**
-     * Returns the list of commands that the application exposes
+     * Returns the list of commands classes that the application exposes
      *
      * @return array
      */
@@ -33,8 +33,7 @@ abstract class AbstractApplication extends SymfonyApplication
     public function run(InputInterface $input = null, OutputInterface $output = null)
     {
         foreach ($this->getCommands() as $commandClass) {
-            $command = new $commandClass();
-            $command->setContainer($this->getContainer());
+            $command = $this->getContainer()->make($commandClass);
             $this->add($command);
         }
 
