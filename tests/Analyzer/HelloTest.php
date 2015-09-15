@@ -1,8 +1,9 @@
 <?php
 namespace Analyzer\Test;
 
-class HumanReadableTest extends TestCase
+class HelloTest extends TestCase
 {
+
     public function testHello()
     {
 

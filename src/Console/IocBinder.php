@@ -45,6 +45,15 @@ class IocBinder
             return new CodeScanner($container['filesystem']);
         });
 
+        $this->container->bind('lexer', function () {
+            return new Lexer();
+        });
+
+        $this->container->bind('parser', function ($container) {
+            return new Parser($container['lexer']);
+        });
+
+
     }
 
     /**
@@ -55,14 +64,6 @@ class IocBinder
     public function postBind(array $configuration)
     {
         $this->container->instance('config', $configuration);
-
-        $this->container->bind('lexer', function () {
-            return new Lexer();
-        });
-
-        $this->container->bind('parser', function ($container) {
-            return new Parser($container['lexer']);
-        });
 
         $this->container->bind(AnalyzeCommand::class, function ($container) {
             return new AnalyzeCommand($container['analyzer']);
