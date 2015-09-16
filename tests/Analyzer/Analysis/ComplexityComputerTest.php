@@ -75,6 +75,13 @@ class ComplexityComputerTest extends TestCase
         $this->assertLessThan(10, $ccn);
     }
 
+    public function testCalculateComplexityOfAVeryLongAndComplexClassMethod()
+    {
+        $code = file_get_contents(STUBPATH . 'long_class_method.php');
+        $ccn = $this->computeFor($code);
+        $this->assertGreaterThan(16, $ccn);
+    }
+
     protected function computeFor($code)
     {
         $ast = $this->parser->parse($code);
