@@ -1,4 +1,5 @@
 <?php
+namespace Just\A\Test;
 
 /**
  * Just a test function for calculating its CCN value
