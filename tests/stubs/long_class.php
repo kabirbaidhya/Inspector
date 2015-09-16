@@ -1,8 +1,6 @@
 <?php
 
-namespace Just\A\Test\VeryLong;
-
-class Foo
+class FooAVeryVeryLongClass
 {
 
     /**

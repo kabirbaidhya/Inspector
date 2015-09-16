@@ -1,7 +1,5 @@
 <?php
 
-namespace Just\A\Test;
-
 class Foo
 {
 

@@ -1,25 +1,21 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: kabir
- * Date: 9/16/15
- * Time: 6:21 PM
- */
 
 namespace Analyzer\Analysis\FlawDetection;
 
+use PhpParser\Node;
 use Analyzer\Application\Exception\Exception;
+use Analyzer\Analysis\Exception\AnalysisException;
 
 interface CheckerInterface
 {
 
     /**
-     * Checks to make sure the classes, methods, and functions are not
-     * very long on the basis of Lines of Code
+     * Checks to make sure the classes, methods, and functions are up to the standards
+     * and don't use bad practices
      *
-     * @param Node[]|null $ast
-     * @return bool
+     * @param Node $node
      * @throws Exception
+     * @throws AnalysisException
      */
-    public function check($ast);
+    public function check(Node $node);
 }

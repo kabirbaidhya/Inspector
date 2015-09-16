@@ -3,8 +3,9 @@
 namespace Analyzer\Test;
 
 use PhpParser\Parser;
-use Analyzer\Analysis\FlawDetection\LinesOfCodeChecker;
+use PhpParser\Node\Stmt\Class_;
 use Analyzer\Analysis\Exception\ClassTooLongException;
+use Analyzer\Analysis\FlawDetection\LinesOfCodeChecker;
 use Analyzer\Analysis\Exception\MethodTooLongException;
 use Analyzer\Analysis\Exception\FunctionTooLongException;
 
@@ -24,70 +25,55 @@ class LinesOfCodeCheckerTest extends TestCase
     protected function _before()
     {
         $this->locChecker = new LinesOfCodeChecker();
+        $this->locChecker->setParameters([
+            'loc_threshold' => [
+                LinesOfCodeChecker::THRESHOLD_CLASS => 500,
+                LinesOfCodeChecker::THRESHOLD_METHOD => 80,
+                LinesOfCodeChecker::THRESHOLD_FUNCTION => 80
+            ]
+        ]);
         $this->parser = $this->getContainer()->make('parser');
     }
 
     public function testCheckPassesForAFunction()
     {
         $code = file_get_contents(STUBPATH . 'CCN/function_1.php');
-        $result = $this->checkFor($code);
-
-        $this->assertTrue($result);
+        $node = $this->parser->parse($code);
+        $this->locChecker->check(current($node));
     }
 
     public function testCheckPassesForAClass()
     {
         $code = file_get_contents(STUBPATH . 'CCN/class_1.php');
-        $result = $this->checkFor($code);
-
-        $this->assertTrue($result);
-    }
-
-    public function testCheckPassesForANamespacedClass()
-    {
-        $code = file_get_contents(STUBPATH . 'CCN/namespaced_class_1.php');
-        $result = $this->checkFor($code);
-
-        $this->assertTrue($result);
-    }
-
-    public function testCheckPassesForANamespacedFunction()
-    {
-        $code = file_get_contents(STUBPATH . 'CCN/namespaced_function_1.php');
-        $result = $this->checkFor($code);
-
-        $this->assertTrue($result);
+        $node = $this->parser->parse($code);
+        $this->locChecker->check(current($node));
     }
 
     public function testCheckFailsForAVeryLongClassMethod()
     {
         $this->setExpectedException(MethodTooLongException::class);
         $code = file_get_contents(STUBPATH . 'long_class_method.php');
-        $this->checkFor($code);
+        $ast = $this->parser->parse($code);
+
+        /** @var Class_ $node */
+        $node = current($ast);
+        $this->locChecker->check($node->stmts[0]);
     }
 
     public function testCheckFailsForAVeryLongFunction()
     {
         $this->setExpectedException(FunctionTooLongException::class);
         $code = file_get_contents(STUBPATH . 'long_function.php');
-        $this->checkFor($code);
+        $ast = $this->parser->parse($code);
+        $this->locChecker->check(current($ast));
     }
 
     public function testCheckFailsForAVeryLongClass()
     {
         $this->setExpectedException(ClassTooLongException::class);
         $code = file_get_contents(STUBPATH . 'long_class.php');
-        $this->checkFor($code);
-    }
-
-    protected function checkFor($code)
-    {
         $ast = $this->parser->parse($code);
-
-        return $this->locChecker->setThreshold([
-            LinesOfCodeChecker::THRESHOLD_CLASS => 500,
-            LinesOfCodeChecker::THRESHOLD_METHOD => 80,
-            LinesOfCodeChecker::THRESHOLD_FUNCTION => 80
-        ])->check($ast);
+        $this->locChecker->check(current($ast));
     }
+
 }

@@ -5,8 +5,8 @@ namespace Analyzer\Analysis\FlawDetection;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\Function_;
-use PhpParser\Node\Stmt\Namespace_;
 use PhpParser\Node\Stmt\ClassMethod;
+use Analyzer\Misc\ParametersInterface;
 use Analyzer\Application\Exception\Exception;
 use Analyzer\Analysis\Exception\ClassTooLongException;
 use Analyzer\Analysis\Exception\MethodTooLongException;
@@ -15,7 +15,7 @@ use Analyzer\Analysis\Exception\FunctionTooLongException;
 /**
  * The Line of Code Checker
  */
-class LinesOfCodeChecker implements CheckerInterface
+class LinesOfCodeChecker implements CheckerInterface, ParametersInterface
 {
 
     const THRESHOLD_CLASS = 'class';
@@ -34,38 +34,24 @@ class LinesOfCodeChecker implements CheckerInterface
      * Checks to make sure the classes, methods, and functions are not
      * very long on the basis of Lines of Code
      *
-     * @param Node[]|null $ast
-     * @return bool
-     * @throws Exception
+     * @param Node $node
      * @throws ClassTooLongException
      * @throws MethodTooLongException
      * @throws FunctionTooLongException
      */
-    public function check($ast)
+    public function check(Node $node)
     {
-        if (empty($ast)) {
-            return true;
-        }
-
         // throw exception if thresholds have not been set
         $this->checkThresholds();
 
-        foreach ($ast as $node) {
-
-            if ($node instanceof Function_) {
-                $this->checkFunction($node);
-            } elseif ($node instanceof ClassMethod) {
-                $this->checkClassMethod($node);
-            } elseif ($node instanceof Class_) {
-                $this->checkClass($node);
-                $this->check($node->stmts);
-            } elseif ($node instanceof Namespace_) {
-                $this->check($node->stmts);
-            }
-
+        if ($node instanceof Function_) {
+            $this->checkFunction($node);
+        } elseif ($node instanceof ClassMethod) {
+            $this->checkClassMethod($node);
+        } elseif ($node instanceof Class_) {
+            $this->checkClass($node);
         }
 
-        return true;
     }
 
     /**
@@ -77,31 +63,13 @@ class LinesOfCodeChecker implements CheckerInterface
      */
     protected function isTooLong(Node $node, $threshold)
     {
+
         $startLine = $node->getAttribute('startLine');
         $endLine = $node->getAttribute('endLine');
 
         $loc = $endLine - $startLine;
 
         return $loc > $threshold;
-    }
-
-    /**
-     * @param array $thresholds
-     * @return $this
-     */
-    public function setThreshold(array $thresholds)
-    {
-        $this->thresholds = $thresholds;
-
-        return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getThresholds()
-    {
-        return $this->thresholds;
     }
 
     /**
@@ -114,7 +82,7 @@ class LinesOfCodeChecker implements CheckerInterface
             empty($this->thresholds[self::THRESHOLD_METHOD]) ||
             empty($this->thresholds[self::THRESHOLD_FUNCTION])
         ) {
-            throw new Exception('LocChecker thresholds have not been set.');
+            throw new Exception('Lines of Code thresholds have not been set.');
         }
     }
 
@@ -151,4 +119,14 @@ class LinesOfCodeChecker implements CheckerInterface
         }
     }
 
+    /**
+     * @param array $params
+     * @return mixed
+     */
+    public function setParameters(array $params)
+    {
+        $this->thresholds = $params['loc_threshold'];
+
+        return $this;
+    }
 }

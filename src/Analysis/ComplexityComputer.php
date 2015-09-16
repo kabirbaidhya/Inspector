@@ -22,43 +22,31 @@ use PhpParser\Node\Expr\BinaryOp\LogicalXor;
 
 /**
  * Computes the Cyclomatic complexity of a method/function
- * @author Kabir Baidhya
  *
+ * @author Kabir Baidhya
  */
 class ComplexityComputer
 {
 
     /**
-     * @param Node[]|null $ast Abstract Syntax Tree nodes
+     * Computes the complexity of a part of code.
+     *
+     * @param Node[]|Node|null $ast Abstract Syntax Tree node(s)
      * @return int The Cyclomatic Complexity Number
      */
     public function compute($ast)
     {
-        if (empty($ast)) {
-            return 0;
-        }
+        $complexity = 0;
+        $walker = new NodeWalker();
 
-        $value = 0;
-        foreach ($ast as $node) {
-            if (!($node instanceof Node)) {
-                continue;
-            }
+        // Walk through all the nodes one by one
+        $walker->walk($ast, function (Node $node) use (&$complexity) {
             if ($this->hasComplexity($node)) {
-                $value += 1;
+                $complexity++;
             }
+        });
 
-            foreach ($node->getSubNodeNames() as $subNodeName) {
-                $subNode = $node->{$subNodeName};
-                if (is_array($subNode)) {
-                    $value += $this->compute($subNode);
-                } elseif ($node instanceof Node) {
-                    $value += $this->compute([$subNode]);
-                }
-            }
-
-        }
-
-        return $value;
+        return $complexity;
     }
 
     /**
@@ -68,9 +56,6 @@ class ComplexityComputer
     protected function hasComplexity(Node $node)
     {
         return (
-
-            $node instanceof Function_ ||
-            $node instanceof ClassMethod ||
             // the control structures
             $node instanceof If_ ||
             $node instanceof ElseIf_ ||
@@ -79,6 +64,10 @@ class ComplexityComputer
             $node instanceof While_ ||
             $node instanceof Do_ ||
             $node instanceof Catch_ ||
+
+            // functions or class methods
+            $node instanceof Function_ ||
+            $node instanceof ClassMethod ||
 
             // excluding 'default' cases
             ($node instanceof Case_ && !empty($node->cond)) ||
