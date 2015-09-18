@@ -2,20 +2,13 @@
 
 namespace Analyzer\Analysis;
 
-
-use Analyzer\Analysis\FlawDetection\EvalDetector;
-use Analyzer\Analysis\FlawDetection\LinesOfCodeChecker;
-use Analyzer\Misc\ParametersInterface;
 use PhpParser\Node;
-use Analyzer\Analysis\FlawDetection\DieDetector;
-use Analyzer\Analysis\FlawDetection\GotoDetector;
+use Analyzer\Misc\ParametersInterface;
 use Analyzer\Analysis\FlawDetection\CheckerInterface;
-
 
 /**
  * Detects and returns all the flaws in a method/function
  * @author Kabir Baidhya
- *
  */
 class FlawDetector implements AnalyzerInterface
 {
@@ -50,7 +43,6 @@ class FlawDetector implements AnalyzerInterface
                 }
                 $checker->check($node);
             }
-
         });
 
         return $errors;
@@ -58,15 +50,10 @@ class FlawDetector implements AnalyzerInterface
 
 
     /**
-     * @return CheckerInterface[]
+     * @return array
      */
     protected function checkers()
     {
-        return [
-            LinesOfCodeChecker::class,
-            GotoDetector::class,
-            DieDetector::class,
-            EvalDetector::class
-        ];
+        return require BASEPATH . 'config/checkers.config.php';
     }
 }

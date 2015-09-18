@@ -2,7 +2,6 @@
 
 namespace Analyzer\Analysis;
 
-
 use Analyzer\Analysis\Exception\AnalysisException;
 use PhpParser\Node;
 

@@ -27,9 +27,9 @@ class ComplexityComputerTest extends TestCase
     {
         // The raw source code
         $code = file_get_contents(STUBPATH . 'CCN/function_1.php');
-
+//        dump($code);
         $ccn = $this->computeFor($code);
-
+//        dd($ccn);
         $this->assertEquals(8, $ccn);
     }
 

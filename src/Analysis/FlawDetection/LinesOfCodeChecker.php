@@ -7,7 +7,6 @@ use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\Function_;
 use PhpParser\Node\Stmt\ClassMethod;
 use Analyzer\Misc\ParametersInterface;
-use Analyzer\Application\Exception\Exception;
 use Analyzer\Analysis\Exception\ClassTooLongException;
 use Analyzer\Analysis\Exception\MethodTooLongException;
 use Analyzer\Analysis\Exception\FunctionTooLongException;
@@ -41,9 +40,6 @@ class LinesOfCodeChecker implements CheckerInterface, ParametersInterface
      */
     public function check(Node $node)
     {
-        // throw exception if thresholds have not been set
-        $this->checkThresholds();
-
         if ($node instanceof Function_) {
             $this->checkFunction($node);
         } elseif ($node instanceof ClassMethod) {
@@ -73,27 +69,13 @@ class LinesOfCodeChecker implements CheckerInterface, ParametersInterface
     }
 
     /**
-     * @throws Exception
-     */
-    protected function checkThresholds()
-    {
-        if (
-            empty($this->thresholds[self::THRESHOLD_CLASS]) ||
-            empty($this->thresholds[self::THRESHOLD_METHOD]) ||
-            empty($this->thresholds[self::THRESHOLD_FUNCTION])
-        ) {
-            throw new Exception('Lines of Code thresholds have not been set.');
-        }
-    }
-
-    /**
      * @param Function_ $node
      * @throws FunctionTooLongException
      */
     protected function checkFunction(Function_ $node)
     {
         if ($this->isTooLong($node, $this->thresholds[self::THRESHOLD_FUNCTION])) {
-            throw new FunctionTooLongException();
+            throw (new FunctionTooLongException())->setNode($node);
         }
     }
 
@@ -104,7 +86,7 @@ class LinesOfCodeChecker implements CheckerInterface, ParametersInterface
     protected function checkClassMethod(ClassMethod $node)
     {
         if ($this->isTooLong($node, $this->thresholds[self::THRESHOLD_METHOD])) {
-            throw new MethodTooLongException();
+            throw (new MethodTooLongException())->setNode($node);
         }
     }
 
@@ -115,7 +97,7 @@ class LinesOfCodeChecker implements CheckerInterface, ParametersInterface
     protected function checkClass(Class_ $node)
     {
         if ($this->isTooLong($node, $this->thresholds[self::THRESHOLD_CLASS])) {
-            throw new ClassTooLongException();
+            throw (new ClassTooLongException())->setNode($node);
         }
     }
 

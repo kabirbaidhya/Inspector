@@ -3,7 +3,7 @@ namespace Analyzer\Test;
 
 use PhpParser\Parser;
 use Analyzer\Analysis\FlawDetector;
-use Analyzer\Analysis\FlawDetection\LinesOfCodeChecker;
+use Analyzer\Analysis\Exception\AnalysisException;
 
 class FlawDetectorTest extends TestCase
 {
@@ -20,13 +20,7 @@ class FlawDetectorTest extends TestCase
 
     protected function _before()
     {
-        $config = [
-            'loc_threshold' => [
-                LinesOfCodeChecker::THRESHOLD_CLASS => 500,
-                LinesOfCodeChecker::THRESHOLD_METHOD => 80,
-                LinesOfCodeChecker::THRESHOLD_FUNCTION => 80
-            ]
-        ];
+        $config = require TESTPATH . 'test.config.php';
         $this->flawDetector = new FlawDetector($config);
         $this->parser = $this->getContainer()->make('parser');
     }
@@ -51,15 +45,16 @@ class FlawDetectorTest extends TestCase
     public function testFlawDetectorGivesBackMessages($filename)
     {
         $code = file_get_contents(STUBPATH . $filename);
-        $result = $this->analyze($code);
-        $this->assertTrue(is_array($result));
-    }
-
-    protected function analyze($code)
-    {
         $ast = $this->parser->parse($code);
         $result = $this->flawDetector->analyze($ast);
 
-        return $result;
+        $this->assertIsListOfAnalysisException($result);
+    }
+
+    protected function assertIsListOfAnalysisException($list)
+    {
+        foreach ($list as $error) {
+            $this->assertInstanceOf(AnalysisException::class, $error);
+        }
     }
 }

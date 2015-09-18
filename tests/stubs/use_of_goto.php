@@ -12,22 +12,23 @@ function example()
             if ($a2 == $b2) {
                 fiddle();
             } else {
-                goto b;
+//                goto b;
             }
         }
-    } else {
-        if ($c == $d) {
-            while ($c == $d) {
-                goto b;
-            }
+    } elseif ($a == $b) {
+        if ($a1 == $b1) {
+            fiddle();
         } else {
-            if ($e == $f) {
-                for ($n = 0; $n < $h; $n++) {
-                    exit();
-                }
+            if ($a2 == $b2) {
+                fiddle();
+            } else {
+                goto b;
             }
         }
     }
+    eval('echo "hello";');
+    eval('echo "hello";');
+    eval('echo "hello";');
     eval('echo "hello";');
 }
 

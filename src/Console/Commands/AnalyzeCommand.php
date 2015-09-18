@@ -64,7 +64,24 @@ class AnalyzeCommand extends Command
         $feedback = $this->analyzer->analyze($path, $options);
 
         $output->writeln('FeedBack');
-        dump($feedback);
+
+        $index = 1;
+        foreach ($feedback as $error) {
+
+            $identifier = str_replace('Exception', '', get_class($error));
+            $identifier = str_replace('Analyzer\\Analysis\\\\', '', $identifier);
+            $node = $error->getNode();
+            $startLine = $node->getAttribute('startLine');
+            $endLine = $node->getAttribute('endLine');
+
+            $lineInfo = ($startLine == $endLine) ? ' at line ' . $startLine : ' from line ' . $startLine . ' to ' . $endLine;
+            printf("Issue %d: %s %s\n", $index, $identifier, $lineInfo);
+            $index++;
+        }
+        if (empty($feedback)) {
+            dump('Code is okay.');
+        }
+//        dump($feedback);
     }
 
 }

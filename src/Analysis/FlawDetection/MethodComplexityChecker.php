@@ -29,7 +29,7 @@ class MethodComplexityChecker extends ComplexityChecker
      */
     public function setParameters(array $params)
     {
-        $this->setParameters($params['complexity_threshold']['method']);
+        $this->setThreshold($params['complexity_threshold']['method']);
 
         return $this;
     }

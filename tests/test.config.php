@@ -1,15 +1,6 @@
 <?php
 
 return [
-    'generators' => [
-        'form' => 'Analyzer\Generator\FormGenerator'
-    ],
-    'paths' => [
-        'form' => 'forms/'
-    ],
-    'form' => [
-        'use_bootstrap' => true
-    ],
     'loc_threshold' => [
         'class' => 500,
         'method' => 80,

@@ -1,6 +1,7 @@
 #!/usr/bin/env php
 <?php
 ini_set('xdebug.max_nesting_level', 3000);
+define('BASEPATH', dirname(__DIR__) . '/');
 
 // Require Composer's autoloader
 foreach ([__DIR__ . '/../../../', __DIR__ . '/../vendor/', __DIR__ . '/vendor/'] as $dir) {

@@ -64,8 +64,9 @@ class Analyzer
         foreach ($source as $filename => $code) {
             $ast = $this->parser->parse($code);
 
-            $result['complexity'] = $result['complexity'] + $this->complexityComputer->analyze($ast);
-            $result['flaws'] = $result['flaws'] + $this->flawDetector->analyze($ast);
+//            $result['complexity'] = $result['complexity'] + $this->complexityComputer->analyze($ast);
+            $messages = $this->flawDetector->analyze($ast);
+            $result = array_merge($result, $messages);
         }
 
         return $result;

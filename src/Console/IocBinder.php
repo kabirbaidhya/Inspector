@@ -73,7 +73,7 @@ class IocBinder
             return new Analyzer(
                 $container['code-scanner'],
                 new ComplexityComputer(),
-                new FlawDetector(),
+                new FlawDetector($container['config']),
                 $container['parser']
             );
         });
