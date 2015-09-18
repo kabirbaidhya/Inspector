@@ -1,29 +1,7 @@
-# Source Code Analyzer #
+# Inspector
 
-This README would normally document whatever steps are necessary to get your application up and running.
-
-### What is this repository for? ###
-
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
-
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+A source code analyzer for PHP.
 
 ### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+* Code should be strictly [PSR-2](http://www.php-fig.org/psr/psr-2/)
+* [PSR-4](http://www.php-fig.org/psr/psr-4/) should be used for Autoloading.
