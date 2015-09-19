@@ -1,16 +1,16 @@
 <?php
 
-namespace Analyzer\Analysis;
+namespace Inspector\Analysis;
 
 use PhpParser\Node;
-use Analyzer\Misc\ParametersInterface;
-use Analyzer\Analysis\FlawDetection\CheckerInterface;
+use Inspector\Misc\ParametersInterface;
+use Inspector\Analysis\FlawDetection\CheckerInterface;
 
 /**
  * Detects and returns all the flaws in a method/function
  * @author Kabir Baidhya
  */
-class FlawDetector implements AnalyzerInterface
+class FlawDetector implements InspectorInterface
 {
 
     /**

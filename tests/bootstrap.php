@@ -6,4 +6,4 @@ define('STUBPATH', TESTPATH . 'stubs/');
 define('BASEPATH', dirname(TESTPATH) . '/');
 
 $loader = require __DIR__ . '/../vendor/autoload.php';
-$loader->addPsr4('Analyzer\\Test\\', __DIR__ . '/Analyzer');
+$loader->addPsr4('Inspector\\Test\\', __DIR__ . '/Inspector');

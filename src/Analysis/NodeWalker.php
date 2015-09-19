@@ -1,8 +1,8 @@
 <?php
 
-namespace Analyzer\Analysis;
+namespace Inspector\Analysis;
 
-use Analyzer\Analysis\Exception\AnalysisException;
+use Inspector\Analysis\Exception\AnalysisException;
 use PhpParser\Node;
 
 class NodeWalker

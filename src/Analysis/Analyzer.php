@@ -1,11 +1,11 @@
 <?php
 
-namespace Analyzer\Analysis;
+namespace Inspector\Analysis;
 
-use Analyzer\Filesystem\CodeScanner;
+use Inspector\Filesystem\CodeScanner;
 use PhpParser\Parser;
-use Analyzer\Filesystem\SourceReader;
-use Analyzer\Filesystem\SourceCodeIterator;
+use Inspector\Filesystem\SourceReader;
+use Inspector\Filesystem\SourceCodeIterator;
 
 /**
  * @author Kabir Baidhya

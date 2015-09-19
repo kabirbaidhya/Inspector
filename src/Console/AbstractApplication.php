@@ -1,9 +1,9 @@
 <?php
 
-namespace Analyzer\Console;
+namespace Inspector\Console;
 
-use Analyzer\Console\Traits\ConfigurableTrait;
-use Analyzer\Console\Traits\ContainerAwareTrait;
+use Inspector\Console\Traits\ConfigurableTrait;
+use Inspector\Console\Traits\ContainerAwareTrait;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Application as SymfonyApplication;

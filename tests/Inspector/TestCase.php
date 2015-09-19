@@ -1,8 +1,8 @@
 <?php
-namespace Analyzer\Test;
+namespace Inspector\Test;
 
-use Analyzer\Console\IocBinder;
-use Analyzer\Console\ServiceContainer;
+use Inspector\Console\IocBinder;
+use Inspector\Console\ServiceContainer;
 
 class TestCase extends \PHPUnit_Framework_TestCase
 {

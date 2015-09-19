@@ -1,8 +1,8 @@
 <?php
-namespace Analyzer\Test;
+namespace Inspector\Test;
 
 use PhpParser\Parser;
-use Analyzer\Analysis\ComplexityComputer;
+use Inspector\Analysis\ComplexityComputer;
 
 class ComplexityComputerTest extends TestCase
 {

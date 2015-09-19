@@ -1,13 +1,13 @@
 <?php
 
-namespace Analyzer\Test;
+namespace Inspector\Test;
 
 use PhpParser\Parser;
 use PhpParser\Node\Stmt\Class_;
-use Analyzer\Analysis\Exception\ClassTooLongException;
-use Analyzer\Analysis\FlawDetection\LinesOfCodeChecker;
-use Analyzer\Analysis\Exception\MethodTooLongException;
-use Analyzer\Analysis\Exception\FunctionTooLongException;
+use Inspector\Analysis\Exception\ClassTooLongException;
+use Inspector\Analysis\FlawDetection\LinesOfCodeChecker;
+use Inspector\Analysis\Exception\MethodTooLongException;
+use Inspector\Analysis\Exception\FunctionTooLongException;
 
 class LinesOfCodeCheckerTest extends TestCase
 {

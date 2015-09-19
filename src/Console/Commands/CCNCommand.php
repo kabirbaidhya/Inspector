@@ -1,9 +1,9 @@
 <?php
 
-namespace Analyzer\Console\Commands;
+namespace Inspector\Console\Commands;
 
-use Analyzer\Console\Command;
-use Analyzer\Filesystem\SourceReader;
+use Inspector\Console\Command;
+use Inspector\Filesystem\SourceReader;
 use Illuminate\Filesystem\Filesystem;
 use PhpParser\Parser;
 use Symfony\Component\Console\Input\InputArgument;

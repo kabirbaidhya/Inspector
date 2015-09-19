@@ -1,15 +1,15 @@
 <?php
 
-namespace Analyzer\Analysis\FlawDetection;
+namespace Inspector\Analysis\FlawDetection;
 
 use PhpParser\Node;
 use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\Function_;
 use PhpParser\Node\Stmt\ClassMethod;
-use Analyzer\Misc\ParametersInterface;
-use Analyzer\Analysis\Exception\ClassTooLongException;
-use Analyzer\Analysis\Exception\MethodTooLongException;
-use Analyzer\Analysis\Exception\FunctionTooLongException;
+use Inspector\Misc\ParametersInterface;
+use Inspector\Analysis\Exception\ClassTooLongException;
+use Inspector\Analysis\Exception\MethodTooLongException;
+use Inspector\Analysis\Exception\FunctionTooLongException;
 
 /**
  * The Line of Code Checker

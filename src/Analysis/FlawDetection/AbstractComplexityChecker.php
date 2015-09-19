@@ -1,12 +1,12 @@
 <?php
 
-namespace Analyzer\Analysis\FlawDetection;
+namespace Inspector\Analysis\FlawDetection;
 
 use PhpParser\Node;
 use PhpParser\Node\Stmt\ClassMethod;
-use Analyzer\Misc\ParametersInterface;
-use Analyzer\Analysis\ComplexityComputer;
-use Analyzer\Analysis\Exception\MethodTooComplexException;
+use Inspector\Misc\ParametersInterface;
+use Inspector\Analysis\ComplexityComputer;
+use Inspector\Analysis\Exception\MethodTooComplexException;
 
 abstract class AbstractComplexityChecker implements CheckerInterface, ParametersInterface
 {

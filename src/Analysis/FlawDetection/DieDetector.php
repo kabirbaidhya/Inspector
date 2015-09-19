@@ -1,10 +1,10 @@
 <?php
 
-namespace Analyzer\Analysis\FlawDetection;
+namespace Inspector\Analysis\FlawDetection;
 
 use PhpParser\Node;
 use PhpParser\Node\Expr\Exit_;
-use Analyzer\Analysis\Exception\DieDetectedException;
+use Inspector\Analysis\Exception\DieDetectedException;
 
 /**
  * Detects the use of die() or exit() from the code

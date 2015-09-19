@@ -1,10 +1,10 @@
 <?php
 
-namespace Analyzer\Analysis\FlawDetection;
+namespace Inspector\Analysis\FlawDetection;
 
 use PhpParser\Node;
 use PhpParser\Node\Expr\Eval_;
-use Analyzer\Analysis\Exception\EvalDetectedException;
+use Inspector\Analysis\Exception\EvalDetectedException;
 
 /**
  * Detects the use of eval()

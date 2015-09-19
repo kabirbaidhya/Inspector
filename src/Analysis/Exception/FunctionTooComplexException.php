@@ -1,6 +1,6 @@
 <?php
 
-namespace Analyzer\Analysis\Exception;
+namespace Inspector\Analysis\Exception;
 
 
 class FunctionTooComplexException extends AnalysisException

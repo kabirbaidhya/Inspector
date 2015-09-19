@@ -12,7 +12,7 @@ foreach ([__DIR__ . '/../../../', __DIR__ . '/../vendor/', __DIR__ . '/vendor/']
 }
 
 // Instantiate the Application
-$pharam = new Analyzer\Application();
+$inspector = new Inspector\Application();
 
 // Auto detects the configuration file from a Yaml file(pharam.yml) or
-$pharam->autodetectConfig()->run();
+$inspector->autodetectConfig()->run();

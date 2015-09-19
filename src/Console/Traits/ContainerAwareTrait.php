@@ -1,8 +1,8 @@
 <?php
 
-namespace Analyzer\Console\Traits;
+namespace Inspector\Console\Traits;
 
-use Analyzer\Console\ServiceContainer;
+use Inspector\Console\ServiceContainer;
 
 trait ContainerAwareTrait
 {

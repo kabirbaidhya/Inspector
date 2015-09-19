@@ -1,9 +1,9 @@
 <?php
-namespace Analyzer\Test;
+namespace Inspector\Test;
 
 use PhpParser\Parser;
-use Analyzer\Analysis\FlawDetector;
-use Analyzer\Analysis\Exception\AnalysisException;
+use Inspector\Analysis\FlawDetector;
+use Inspector\Analysis\Exception\AnalysisException;
 
 class FlawDetectorTest extends TestCase
 {

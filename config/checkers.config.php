@@ -1,11 +1,11 @@
 <?php
 
 return [
-    'Analyzer\Analysis\FlawDetection\DieDetector',
-    'Analyzer\Analysis\FlawDetection\GotoDetector',
-    'Analyzer\Analysis\FlawDetection\EvalDetector',
-    'Analyzer\Analysis\FlawDetection\LinesOfCodeChecker',
-    'Analyzer\Analysis\FlawDetection\ClassComplexityChecker',
-    'Analyzer\Analysis\FlawDetection\MethodComplexityChecker',
-    'Analyzer\Analysis\FlawDetection\FunctionComplexityChecker',
+    'Inspector\Analysis\FlawDetection\DieDetector',
+    'Inspector\Analysis\FlawDetection\GotoDetector',
+    'Inspector\Analysis\FlawDetection\EvalDetector',
+    'Inspector\Analysis\FlawDetection\LinesOfCodeChecker',
+    'Inspector\Analysis\FlawDetection\ClassComplexityChecker',
+    'Inspector\Analysis\FlawDetection\MethodComplexityChecker',
+    'Inspector\Analysis\FlawDetection\FunctionComplexityChecker',
 ];

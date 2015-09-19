@@ -1,5 +1,5 @@
 <?php
-namespace Analyzer\Test;
+namespace Inspector\Test;
 
 class HelloTest extends TestCase
 {

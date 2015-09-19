@@ -1,6 +1,6 @@
 <?php
 
-namespace Analyzer\Analysis\Exception;
+namespace Inspector\Analysis\Exception;
 
 
 class MethodTooLongException extends AnalysisException

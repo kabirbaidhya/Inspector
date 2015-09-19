@@ -1,13 +1,13 @@
 <?php
 
 
-namespace Analyzer\Analysis;
+namespace Inspector\Analysis;
 
 /**
  *
  * @author Kabir Baidhya
  */
-interface AnalyzerInterface
+interface InspectorInterface
 {
 
     public function analyze($ast);

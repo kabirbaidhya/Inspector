@@ -1,8 +1,8 @@
 <?php
 
-namespace Analyzer\Analysis\Exception;
+namespace Inspector\Analysis\Exception;
 
-use Analyzer\Application\Exception\Exception;
+use Inspector\Application\Exception\Exception;
 use PhpParser\Node;
 
 class AnalysisException extends Exception

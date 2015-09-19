@@ -1,9 +1,9 @@
 <?php
 
-namespace Analyzer\Console\Commands;
+namespace Inspector\Console\Commands;
 
-use Analyzer\Console\Command;
-use Analyzer\Analysis\Analyzer;
+use Inspector\Console\Command;
+use Inspector\Analysis\Analyzer;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -18,7 +18,7 @@ class AnalyzeCommand extends Command
     /**
      * @var Analyzer
      */
-    protected $analyzer;
+    private $analyzer;
 
     /**
      * @param Analyzer $analyzer
@@ -69,7 +69,7 @@ class AnalyzeCommand extends Command
         foreach ($feedback as $error) {
 
             $identifier = str_replace('Exception', '', get_class($error));
-            $identifier = str_replace('Analyzer\\Analysis\\\\', '', $identifier);
+            $identifier = str_replace('Inspector\\Analysis\\\\', '', $identifier);
             $node = $error->getNode();
             $startLine = $node->getAttribute('startLine');
             $endLine = $node->getAttribute('endLine');

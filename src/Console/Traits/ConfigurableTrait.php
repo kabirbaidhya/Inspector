@@ -1,8 +1,8 @@
 <?php
 
-namespace Analyzer\Console\Traits;
+namespace Inspector\Console\Traits;
 
-use Analyzer\Application;
+use Inspector\Application;
 use Symfony\Component\Yaml\Yaml;
 
 /**

@@ -1,15 +1,15 @@
 <?php
 
-namespace Analyzer\Console;
+namespace Inspector\Console;
 
-use Analyzer\Analysis\ComplexityComputer;
-use Analyzer\Analysis\FlawDetector;
 use PhpParser\Lexer;
 use PhpParser\Parser;
-use Analyzer\Analysis\Analyzer;
-use Analyzer\Filesystem\CodeScanner;
+use Inspector\Analysis\Analyzer;
+use Inspector\Analysis\FlawDetector;
+use Inspector\Filesystem\CodeScanner;
 use Illuminate\Filesystem\Filesystem;
-use Analyzer\Console\Commands\AnalyzeCommand;
+use Inspector\Analysis\ComplexityComputer;
+use Inspector\Console\Commands\AnalyzeCommand;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Output\ConsoleOutput;
 

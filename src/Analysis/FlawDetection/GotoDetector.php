@@ -1,9 +1,9 @@
 <?php
 
-namespace Analyzer\Analysis\FlawDetection;
+namespace Inspector\Analysis\FlawDetection;
 
 use PhpParser\Node;
-use Analyzer\Analysis\Exception\GotoDetectedException;
+use Inspector\Analysis\Exception\GotoDetectedException;
 use PhpParser\Node\Stmt\Goto_;
 
 /**

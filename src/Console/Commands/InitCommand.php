@@ -1,9 +1,9 @@
 <?php
 
-namespace Analyzer\Console\Commands;
+namespace Inspector\Console\Commands;
 
-use Analyzer\Application;
-use Analyzer\Console\Command;
+use Inspector\Application;
+use Inspector\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

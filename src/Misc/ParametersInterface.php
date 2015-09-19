@@ -6,7 +6,7 @@
  * Time: 3:22 AM
  */
 
-namespace Analyzer\Misc;
+namespace Inspector\Misc;
 
 
 interface ParametersInterface

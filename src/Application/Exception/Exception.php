@@ -1,6 +1,6 @@
 <?php
 
-namespace Analyzer\Application\Exception;
+namespace Inspector\Application\Exception;
 
 class Exception extends \Exception
 {

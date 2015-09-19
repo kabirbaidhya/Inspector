@@ -1,6 +1,6 @@
 <?php
 
-namespace Analyzer\Analysis;
+namespace Inspector\Analysis;
 
 use PhpParser\Node;
 use PhpParser\Node\Stmt\If_;

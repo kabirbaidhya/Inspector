@@ -1,10 +1,10 @@
 <?php
 
-namespace Analyzer\Analysis\FlawDetection;
+namespace Inspector\Analysis\FlawDetection;
 
 use PhpParser\Node;
-use Analyzer\Application\Exception\Exception;
-use Analyzer\Analysis\Exception\AnalysisException;
+use Inspector\Application\Exception\Exception;
+use Inspector\Analysis\Exception\AnalysisException;
 
 interface CheckerInterface
 {

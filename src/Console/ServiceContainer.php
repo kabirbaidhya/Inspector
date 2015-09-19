@@ -1,6 +1,6 @@
 <?php
 
-namespace Analyzer\Console;
+namespace Inspector\Console;
 
 use Illuminate\Container\Container;
 

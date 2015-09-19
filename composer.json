@@ -1,6 +1,6 @@
 {
-    "name": "gckabir/srca",
-    "description": "Source Code Analyzer tool",
+    "name": "gckabir/inspector",
+    "description": "Inspector - A Source Code Inspector for PHP",
     "require": {
         "php": ">=5.5.9",
         "symfony/console": "^2.7",
@@ -14,7 +14,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Analyzer\\": "src/"
+            "Inspector\\": "src/"
         },
         "files": [
             "src/Misc/helpers.php"
@@ -29,6 +29,6 @@
         ]
     },
     "bin": [
-        "bin/srca"
+        "bin/inspector"
     ]
 }

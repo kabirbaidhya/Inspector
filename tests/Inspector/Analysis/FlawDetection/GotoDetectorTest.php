@@ -1,10 +1,10 @@
 <?php
 
-namespace Analyzer\Test;
+namespace Inspector\Test;
 
 use PhpParser\Node;
-use Analyzer\Analysis\FlawDetection\GotoDetector;
-use Analyzer\Analysis\Exception\GotoDetectedException;
+use Inspector\Analysis\FlawDetection\GotoDetector;
+use Inspector\Analysis\Exception\GotoDetectedException;
 
 class GotoDetectorTest extends TestCase
 {

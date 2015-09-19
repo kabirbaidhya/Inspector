@@ -1,8 +1,8 @@
 <?php
 
-namespace Analyzer\Console;
+namespace Inspector\Console;
 
-use Analyzer\Console\Traits\ContainerAwareTrait;
+use Inspector\Console\Traits\ContainerAwareTrait;
 use Symfony\Component\Console\Command\Command as SymfonyCommand;
 
 /**

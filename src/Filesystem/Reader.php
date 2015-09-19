@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Analyzer\Filesystem;
+namespace Inspector\Filesystem;
 
 use Illuminate\Filesystem\Filesystem;
 

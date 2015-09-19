@@ -1,6 +1,6 @@
 <?php
 
-namespace Analyzer\Filesystem;
+namespace Inspector\Filesystem;
 
 use Iterator;
 
