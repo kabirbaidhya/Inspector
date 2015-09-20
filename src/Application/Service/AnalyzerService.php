@@ -8,7 +8,7 @@ namespace Inspector\Application\Service;
 
 use Inspector\Analysis\Analyzer;
 use Inspector\Analysis\Exception\AnalysisException;
-use Inspector\Analysis\Feedback\TextGenerator;
+use Inspector\Analysis\Feedback\FeedbackInterface;
 use Inspector\Filesystem\CodeScanner;
 
 class AnalyzerService
@@ -25,13 +25,20 @@ class AnalyzerService
     protected $scanner;
 
     /**
+     * @var FeedbackInterface
+     */
+    private $feedback;
+
+    /**
      * @param Analyzer $analyzer
      * @param CodeScanner $scanner
+     * @param FeedbackInterface $feedback
      */
-    public function __construct(Analyzer $analyzer, CodeScanner $scanner)
+    public function __construct(Analyzer $analyzer, CodeScanner $scanner, FeedbackInterface $feedback)
     {
         $this->analyzer = $analyzer;
         $this->scanner = $scanner;
+        $this->feedback = $feedback;
     }
 
     /**
@@ -44,9 +51,9 @@ class AnalyzerService
         $source = $this->scanner->scan($path);
 
         /** @var  AnalysisException[] $feedback */
-        $feedback = $this->analyzer->analyze($source, $options);
+        $messages = $this->analyzer->analyze($source, $options);
 
-        $feedback = (new TextGenerator())->generate($feedback);
+        $feedback = $this->feedback->generate($messages);
 
         return $feedback;
     }

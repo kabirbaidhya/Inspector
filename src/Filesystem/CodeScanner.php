@@ -30,7 +30,7 @@ class CodeScanner
      * Scans a directory
      *
      * @param string $path
-     * @return RegexIterator
+     * @return SourceIterator
      */
     public function scan($path)
     {

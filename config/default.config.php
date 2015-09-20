@@ -10,5 +10,6 @@ return [
         'class' => 20,
         'method' => 5,
         'function' => 5
-    ]
+    ],
+    'messages' => require __DIR__ . '/../resources/messages/en_US/messages.php'
 ];

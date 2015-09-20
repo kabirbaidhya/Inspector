@@ -8,8 +8,10 @@ use Inspector\Analysis\Analyzer;
 use Inspector\Analysis\FlawDetector;
 use Inspector\Filesystem\CodeScanner;
 use Illuminate\Filesystem\Filesystem;
+use Inspector\Analysis\Feedback\TextFeedback;
 use Symfony\Component\Console\Input\ArgvInput;
 use Inspector\Application\Commands\AnalyzeCommand;
+use Inspector\Analysis\Feedback\FeedbackInterface;
 use Inspector\Application\Service\AnalyzerService;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
@@ -72,10 +74,15 @@ class IocBinder
             );
         });
 
+        $this->container->bind(FeedbackInterface::class, function ($container) {
+            return new TextFeedback($container['config']);
+        });
+
         $this->container->bind('analyzer-service', function ($container) {
             return new AnalyzerService(
                 $container['analyzer'],
-                $container['code-scanner']
+                $container['code-scanner'],
+                $container[FeedbackInterface::class]
             );
         });
 
@@ -84,6 +91,7 @@ class IocBinder
                 $container['analyzer-service']
             );
         });
+
     }
 
 }
