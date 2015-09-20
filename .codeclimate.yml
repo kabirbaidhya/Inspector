@@ -1,0 +1,9 @@
+languages:
+  PHP: true
+exclude_paths:
+- "tests/*"
+- "resources/*"
+- "bin/*"
+- "config/*"
+- "vendor/*"
+- "release/*"
