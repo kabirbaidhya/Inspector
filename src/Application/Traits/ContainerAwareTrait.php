@@ -1,11 +1,12 @@
 <?php
 
-namespace Inspector\Console\Traits;
+namespace Inspector\Application\Traits;
 
-use Inspector\Console\ServiceContainer;
+use Inspector\Application\ServiceContainer;
 
 trait ContainerAwareTrait
 {
+
     /**
      * @var ServiceContainer
      */

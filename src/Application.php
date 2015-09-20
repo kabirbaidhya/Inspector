@@ -2,20 +2,23 @@
 
 namespace Inspector;
 
-use Inspector\Console\IocBinder;
-use Inspector\Console\ServiceContainer;
-use Inspector\Console\Commands\CCNCommand;
-use Inspector\Console\Commands\InitCommand;
-use Inspector\Console\Commands\AnalyzeCommand;
+use Inspector\Application\IocBinder;
+use Inspector\Application\ServiceContainer;
+use Inspector\Application\Commands\CCNCommand;
+use Inspector\Application\Commands\InitCommand;
+use Inspector\Application\Commands\AnalyzeCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Inspector\Console\AbstractApplication as ConsoleApplication;
+use Inspector\Application\AbstractApplication as ConsoleApplication;
 
 class Application extends ConsoleApplication
 {
+
     const APP_NAME = 'Source Code Inspector';
+
     const APP_VERSION = '0.0.1';
-    const APP_DEFAULT_CONFIG = 'srca.yml';
+
+    const APP_DEFAULT_CONFIG = 'inspector.yml';
 
     /**
      * @var IocBinder

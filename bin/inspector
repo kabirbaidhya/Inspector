@@ -14,5 +14,5 @@ foreach ([__DIR__ . '/../../../', __DIR__ . '/../vendor/', __DIR__ . '/vendor/']
 // Instantiate the Application
 $inspector = new Inspector\Application();
 
-// Auto detects the configuration file from a Yaml file(pharam.yml) or
+// Auto detects the configuration file from a Yaml file
 $inspector->autodetectConfig()->run();

@@ -1,6 +1,6 @@
 <?php
 
-namespace Inspector\Console;
+namespace Inspector\Application;
 
 use PhpParser\Lexer;
 use PhpParser\Parser;
@@ -8,9 +8,9 @@ use Inspector\Analysis\Analyzer;
 use Inspector\Analysis\FlawDetector;
 use Inspector\Filesystem\CodeScanner;
 use Illuminate\Filesystem\Filesystem;
-use Inspector\Analysis\ComplexityComputer;
-use Inspector\Console\Commands\AnalyzeCommand;
 use Symfony\Component\Console\Input\ArgvInput;
+use Inspector\Application\Commands\AnalyzeCommand;
+use Inspector\Application\Service\AnalyzerService;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
 class IocBinder
@@ -65,16 +65,23 @@ class IocBinder
     {
         $this->container->instance('config', $configuration);
 
-        $this->container->bind(AnalyzeCommand::class, function ($container) {
-            return new AnalyzeCommand($container['analyzer']);
-        });
-
         $this->container->bind('analyzer', function ($container) {
             return new Analyzer(
-                $container['code-scanner'],
-                new ComplexityComputer(),
-                new FlawDetector($container['config']),
-                $container['parser']
+                $container['parser'],
+                new FlawDetector($container['config'])
+            );
+        });
+
+        $this->container->bind('analyzer-service', function ($container) {
+            return new AnalyzerService(
+                $container['analyzer'],
+                $container['code-scanner']
+            );
+        });
+
+        $this->container->bind(AnalyzeCommand::class, function ($container) {
+            return new AnalyzeCommand(
+                $container['analyzer-service']
             );
         });
     }

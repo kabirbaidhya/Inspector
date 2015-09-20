@@ -1,10 +1,10 @@
 <?php
 
-namespace Inspector\Console;
+namespace Inspector\Application;
 
-use Inspector\Console\Traits\ConfigurableTrait;
-use Inspector\Console\Traits\ContainerAwareTrait;
 use Symfony\Component\Console\Input\InputInterface;
+use Inspector\Application\Traits\ConfigurableTrait;
+use Inspector\Application\Traits\ContainerAwareTrait;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Application as SymfonyApplication;
 

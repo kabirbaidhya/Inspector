@@ -1,20 +1,20 @@
 <?php
 
-namespace Inspector\Console\Commands;
+namespace Inspector\Application\Commands;
 
-use Inspector\Console\Command;
-use Inspector\Filesystem\SourceReader;
-use Illuminate\Filesystem\Filesystem;
 use PhpParser\Parser;
+use Inspector\Application\Command;
+use Illuminate\Filesystem\Filesystem;
+use Inspector\Filesystem\SourceReader;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Finder\Iterator\RecursiveDirectoryIterator;
 
 class CCNCommand extends Command
 {
 
     protected $name = 'ccn';
+
     protected $description = 'Computes the Cyclomatic Complexity of the code';
 
     protected function getArguments()

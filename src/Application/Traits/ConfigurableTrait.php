@@ -1,6 +1,6 @@
 <?php
 
-namespace Inspector\Console\Traits;
+namespace Inspector\Application\Traits;
 
 use Inspector\Application;
 use Symfony\Component\Yaml\Yaml;
@@ -10,6 +10,7 @@ use Symfony\Component\Yaml\Yaml;
  */
 trait ConfigurableTrait
 {
+
     /**
      * @var array
      */

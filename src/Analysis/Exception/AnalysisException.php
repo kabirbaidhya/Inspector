@@ -2,8 +2,8 @@
 
 namespace Inspector\Analysis\Exception;
 
-use Inspector\Application\Exception\Exception;
 use PhpParser\Node;
+use Inspector\Application\Exception\Exception;
 
 class AnalysisException extends Exception
 {
@@ -30,6 +30,17 @@ class AnalysisException extends Exception
         $this->node = $node;
 
         return $this;
+    }
+
+    /**
+     * Returns a new Exception instance with node.
+     *
+     * @param Node $node
+     * @return AnalysisException
+     */
+    public static function withNode(Node $node)
+    {
+        return (new static())->setNode($node);
     }
 
 }

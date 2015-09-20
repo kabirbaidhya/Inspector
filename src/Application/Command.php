@@ -1,8 +1,8 @@
 <?php
 
-namespace Inspector\Console;
+namespace Inspector\Application;
 
-use Inspector\Console\Traits\ContainerAwareTrait;
+use Inspector\Application\Traits\ContainerAwareTrait;
 use Symfony\Component\Console\Command\Command as SymfonyCommand;
 
 /**
@@ -14,6 +14,7 @@ class Command extends SymfonyCommand
     use ContainerAwareTrait;
 
     protected $name;
+
     protected $description;
 
     public function __construct()

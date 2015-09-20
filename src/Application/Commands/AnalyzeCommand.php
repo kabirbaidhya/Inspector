@@ -1,10 +1,10 @@
 <?php
 
-namespace Inspector\Console\Commands;
+namespace Inspector\Application\Commands;
 
-use Inspector\Console\Command;
-use Inspector\Analysis\Analyzer;
+use Inspector\Application\Command;
 use Symfony\Component\Console\Input\InputArgument;
+use Inspector\Application\Service\AnalyzerService;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -16,18 +16,18 @@ class AnalyzeCommand extends Command
     protected $description = 'Analyzes the source code';
 
     /**
-     * @var Analyzer
+     * @var AnalyzerService
      */
-    private $analyzer;
+    protected $analyzerService;
 
     /**
-     * @param Analyzer $analyzer
+     * @param AnalyzerService $analyzerService
      */
-    public function __construct(Analyzer $analyzer)
+    public function __construct(AnalyzerService $analyzerService)
     {
         parent::__construct();
 
-        $this->analyzer = $analyzer;
+        $this->analyzerService = $analyzerService;
     }
 
     /**
@@ -61,27 +61,11 @@ class AnalyzeCommand extends Command
         $path = $input->getArgument('path');
         $options = $input->getOptions();
 
-        $feedback = $this->analyzer->analyze($path, $options);
+        $feedback = $this->analyzerService->analyze($path, $options);
 
         $output->writeln('FeedBack');
 
-        $index = 1;
-        foreach ($feedback as $error) {
-
-            $identifier = str_replace('Exception', '', get_class($error));
-            $identifier = str_replace('Inspector\\Analysis\\\\', '', $identifier);
-            $node = $error->getNode();
-            $startLine = $node->getAttribute('startLine');
-            $endLine = $node->getAttribute('endLine');
-
-            $lineInfo = ($startLine == $endLine) ? ' at line ' . $startLine : ' from line ' . $startLine . ' to ' . $endLine;
-            printf("Issue %d: %s %s\n", $index, $identifier, $lineInfo);
-            $index++;
-        }
-        if (empty($feedback)) {
-            dump('Code is okay.');
-        }
-//        dump($feedback);
+        $output->write($feedback);
     }
 
 }

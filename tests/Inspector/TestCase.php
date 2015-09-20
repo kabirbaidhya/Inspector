@@ -1,8 +1,9 @@
 <?php
+
 namespace Inspector\Test;
 
-use Inspector\Console\IocBinder;
-use Inspector\Console\ServiceContainer;
+use Inspector\Application\IocBinder;
+use Inspector\Application\ServiceContainer;
 
 class TestCase extends \PHPUnit_Framework_TestCase
 {

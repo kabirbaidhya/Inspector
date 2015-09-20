@@ -1,15 +1,16 @@
 <?php
 
-namespace Inspector\Console\Commands;
+namespace Inspector\Application\Commands;
 
 use Inspector\Application;
-use Inspector\Console\Command;
+use Inspector\Application\Command;
 use Illuminate\Filesystem\Filesystem;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class InitCommand extends Command
 {
+
     protected $name = 'init';
 
     protected $description = 'Initializes & generates an config file';
