@@ -1,8 +1,8 @@
 # Inspector
-[![Code Climate](https://codeclimate.com/github/kabirbaidhya/Inspector/badges/gpa.svg)](https://codeclimate.com/github/kabirbaidhya/Inspector)
 [![Build Status](https://travis-ci.org/kabirbaidhya/Inspector.svg)](https://travis-ci.org/kabirbaidhya/Inspector)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/kabirbaidhya/Inspector/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/kabirbaidhya/Inspector/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/kabirbaidhya/Inspector/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/kabirbaidhya/Inspector/?branch=master)
+[![Code Climate](https://codeclimate.com/github/kabirbaidhya/Inspector/badges/gpa.svg)](https://codeclimate.com/github/kabirbaidhya/Inspector)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/kabirbaidhya/Inspector/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/kabirbaidhya/Inspector/?branch=master)
 
 A source code analyzer for PHP.
 
