@@ -4,11 +4,12 @@ namespace Inspector\Test;
 
 use PhpParser\Node;
 use PhpParser\Parser;
-use Inspector\Application\IocBinder;
+use PHPUnit_Framework_TestCase;
 use Inspector\Application\ServiceContainer;
+use Inspector\Foundation\Test\ContainerLoader;
 use Inspector\Foundation\Test\CommonAssertionsTrait;
 
-class TestCase extends \PHPUnit_Framework_TestCase
+class TestCase extends PHPUnit_Framework_TestCase
 {
 
     use CommonAssertionsTrait;
@@ -17,10 +18,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $container = new ServiceContainer();
-        $iocBinder = new IocBinder($container);
-        $iocBinder->preBind();
-        $this->setContainer($container);
+        $this->setContainer(ContainerLoader::loadContainer(TESTPATH . 'test.config.php'));
 
         $this->_before();
     }

@@ -5,16 +5,33 @@ namespace Inspector\Analysis\FlawDetection;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\ClassMethod;
 use Inspector\Misc\ParametersInterface;
-use Inspector\Analysis\ComplexityComputer;
+use Inspector\Analysis\Complexity\ComplexityComputer;
 use Inspector\Analysis\Exception\MethodTooComplexException;
+use Inspector\Analysis\Complexity\ComplexityComputerAwareInterface;
 
-abstract class AbstractComplexityChecker implements CheckerInterface, ParametersInterface
+abstract class AbstractComplexityChecker implements CheckerInterface, ParametersInterface, ComplexityComputerAwareInterface
 {
+
+    /**
+     * @var ComplexityComputer
+     */
+    protected $complexityComputer;
 
     /**
      * @var int
      */
     protected $threshold;
+
+    /**
+     * @param ComplexityComputer $complexityComputer
+     * @return $this
+     */
+    public function setComplexityComputer(ComplexityComputer $complexityComputer)
+    {
+        $this->complexityComputer = $complexityComputer;
+
+        return $this;
+    }
 
     /**
      * Checks to make sure the class method is not that complex
@@ -24,9 +41,8 @@ abstract class AbstractComplexityChecker implements CheckerInterface, Parameters
      */
     public function check(Node $node)
     {
-        $complexityComputer = new ComplexityComputer();
         if ($node instanceof ClassMethod) {
-            $complexity = $complexityComputer->compute($node);
+            $complexity = $this->complexityComputer->compute($node);
 
             if ($complexity > $this->threshold) {
                 throw (new MethodTooComplexException)->setNode($node);
@@ -42,17 +58,9 @@ abstract class AbstractComplexityChecker implements CheckerInterface, Parameters
      */
     protected function isComplex(Node $node)
     {
-        $complexity = $this->complexityComputer()->compute($node);
+        $complexity = $this->complexityComputer->compute($node);
 
         return ($complexity > $this->getThreshold());
-    }
-
-    /**
-     * @return ComplexityComputer
-     */
-    protected function complexityComputer()
-    {
-        return new ComplexityComputer();
     }
 
     /**

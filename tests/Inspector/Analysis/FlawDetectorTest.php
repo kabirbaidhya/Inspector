@@ -15,8 +15,7 @@ class FlawDetectorTest extends TestCase
 
     protected function _before()
     {
-        $config = require TESTPATH . 'test.config.php';
-        $this->flawDetector = new FlawDetector($config);
+        $this->flawDetector = $this->getContainer()->make('flaw-detector');
     }
 
     public function listOfFiles()
@@ -42,13 +41,7 @@ class FlawDetectorTest extends TestCase
         $ast = $this->getParser()->parse($code);
         $result = $this->flawDetector->analyze($ast);
 
-        $this->assertIsListOfAnalysisException($result);
+        $this->assertArrayOf(AnalysisException::class, $result);
     }
 
-    protected function assertIsListOfAnalysisException($list)
-    {
-        foreach ($list as $error) {
-            $this->assertInstanceOf(AnalysisException::class, $error);
-        }
-    }
 }

@@ -14,17 +14,15 @@ class ComplexityComputerTest extends TestCase
 
     protected function _before()
     {
-        $this->computer = new ComplexityComputer();
+        $this->computer = $this->getContainer()->make('complexity-computer');
     }
 
     public function testCalculateAgainstAFunction()
     {
         // The raw source code
         $code = file_get_contents(STUBPATH . 'CCN/function_1.php');
-//        dump($code);
         $ccn = $this->computeFor($code);
-//        dd($ccn);
-        $this->assertEquals(8, $ccn);
+        $this->assertEquals(9, $ccn);
     }
 
     public function testCalculateAgainstANamespacedFunction()

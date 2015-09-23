@@ -2,6 +2,8 @@
 
 namespace Inspector\Application;
 
+use Inspector\Analysis\Complexity\CCNChecker;
+use Inspector\Analysis\Complexity\ComplexityComputer;
 use PhpParser\Lexer;
 use PhpParser\Parser;
 use Inspector\Analysis\Analyzer;
@@ -55,6 +57,15 @@ class IocBinder
             return new Parser($container['lexer']);
         });
 
+        $this->container->bind('bootstrapper', function ($container) {
+            return new Bootstrapper($container);
+        });
+
+        $this->container->bind('complexity-computer', function () {
+            // Complexity Computer based upon Cyclomatic Complexity Number
+            return new ComplexityComputer(new CCNChecker());
+        });
+
     }
 
     /**
@@ -66,10 +77,14 @@ class IocBinder
     {
         $this->container->instance('config', $configuration);
 
+        $this->container->bind('flaw-detector', function ($container) {
+            return new FlawDetector($container['bootstrapper'], $container['config']);
+        });
+
         $this->container->bind('analyzer', function ($container) {
             return new Analyzer(
                 $container['parser'],
-                new FlawDetector($container['config'])
+                $container['flaw-detector']
             );
         });
 

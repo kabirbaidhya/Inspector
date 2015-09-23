@@ -2,6 +2,7 @@
 
 namespace Inspector\Analysis;
 
+use Inspector\Application\Bootstrapper;
 use PhpParser\Node;
 use Inspector\Misc\ParametersInterface;
 use Inspector\Analysis\FlawDetection\CheckerInterface;
@@ -18,9 +19,19 @@ class FlawDetector implements InspectorInterface
      */
     protected $config;
 
-    public function __construct(array $config)
+    /**
+     * @var Bootstrapper
+     */
+    protected $bootstrapper;
+
+    /**
+     * @param Bootstrapper $bootstrapper
+     * @param array $config
+     */
+    public function __construct(Bootstrapper $bootstrapper, array $config)
     {
         $this->config = $config;
+        $this->bootstrapper = $bootstrapper;
     }
 
     /**
@@ -41,6 +52,9 @@ class FlawDetector implements InspectorInterface
                 if ($checker instanceof ParametersInterface) {
                     $checker->setParameters($this->config);
                 }
+
+                $this->bootstrapper->bootstrap($checker);
+
                 $checker->check($node);
             }
         });

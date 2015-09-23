@@ -55,7 +55,7 @@ class CodeScanner
     /**
      * @param string $path
      * @param string $pattern
-     * @return RecursiveDirectoryIterator
+     * @return RegexIterator|RecursiveDirectoryIterator
      */
     protected function getSourceIterator($path, $pattern)
     {
@@ -74,7 +74,7 @@ class CodeScanner
      */
     protected function getFilePattern($path)
     {
-        $filename = '/' . basename($path) . '$/';
+        $filename = '/(\/|\\\)' . basename($path) . '$/i';
 
         return $filename;
     }

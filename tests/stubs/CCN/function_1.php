@@ -8,7 +8,11 @@
 function example($x, $y)
 {
     if ($x > 23 || $y < 42) {
+        $func = function ($b) {
+            return $b;
+        };
         for ($i = $x; $i >= $x && $i <= $y; ++$i) {
+
         }
     } else {
         switch ($x + $y) {

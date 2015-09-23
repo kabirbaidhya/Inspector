@@ -3,9 +3,7 @@
 namespace Inspector\Analysis;
 
 use PhpParser\Parser;
-use Inspector\Filesystem\SourceReader;
 use Inspector\Filesystem\SourceIterator;
-use Inspector\Filesystem\SourceCodeIterator;
 
 /**
  * @author Kabir Baidhya
