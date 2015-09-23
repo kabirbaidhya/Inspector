@@ -4,6 +4,7 @@
 A source code analyzer for PHP.
 
 ### Dependencies
+* PHP 5.5.9+
 * [PhpParser](https://github.com/nikic/PHP-Parser)
 * [Symfony Console](https://github.com/symfony/Console)
 
