@@ -5,6 +5,7 @@ php:
   - 5.5.9
   - 5.6
   - hhvm
+  - 7.0
 
 before_script:
   - if [ "`phpenv version-name`" != "hhvm" ]; then echo "extension = mongo.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini; fi
