@@ -1,7 +1,7 @@
 <?php
-namespace Inspector\Test;
+namespace Inspector\Test\Analysis;
 
-use PhpParser\Parser;
+use Inspector\Test\TestCase;
 use Inspector\Analysis\FlawDetector;
 use Inspector\Analysis\Exception\AnalysisException;
 
@@ -13,16 +13,10 @@ class FlawDetectorTest extends TestCase
      */
     protected $flawDetector;
 
-    /**
-     * @var Parser
-     */
-    protected $parser;
-
     protected function _before()
     {
         $config = require TESTPATH . 'test.config.php';
         $this->flawDetector = new FlawDetector($config);
-        $this->parser = $this->getContainer()->make('parser');
     }
 
     public function listOfFiles()
@@ -45,7 +39,7 @@ class FlawDetectorTest extends TestCase
     public function testFlawDetectorGivesBackMessages($filename)
     {
         $code = file_get_contents(STUBPATH . $filename);
-        $ast = $this->parser->parse($code);
+        $ast = $this->getParser()->parse($code);
         $result = $this->flawDetector->analyze($ast);
 
         $this->assertIsListOfAnalysisException($result);

@@ -1,7 +1,7 @@
 <?php
-namespace Inspector\Test;
+namespace Inspector\Test\Analysis;
 
-use PhpParser\Parser;
+use Inspector\Test\TestCase;
 use Inspector\Analysis\ComplexityComputer;
 
 class ComplexityComputerTest extends TestCase
@@ -12,15 +12,9 @@ class ComplexityComputerTest extends TestCase
      */
     protected $computer;
 
-    /**
-     * @var Parser
-     */
-    protected $parser;
-
     protected function _before()
     {
         $this->computer = new ComplexityComputer();
-        $this->parser = $this->getContainer()->make('parser');
     }
 
     public function testCalculateAgainstAFunction()
@@ -84,7 +78,7 @@ class ComplexityComputerTest extends TestCase
 
     protected function computeFor($code)
     {
-        $ast = $this->parser->parse($code);
+        $ast = $this->getParser()->parse($code);
         // Calculate the Cyclomatic Complexity Number
         $ccn = $this->computer->compute($ast);
 

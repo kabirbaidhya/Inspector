@@ -6,7 +6,7 @@ class FooAVeryVeryLongClass
     /**
      * A very long and complicated class method
      */
-    public function example()
+    public function example1()
     {
         if ($a == $b) {
             if ($a1 == $b1) {
@@ -101,7 +101,7 @@ class FooAVeryVeryLongClass
     /**
      * A very long and complicated class method
      */
-    public function example()
+    public function example2()
     {
         if ($a == $b) {
             if ($a1 == $b1) {
@@ -196,7 +196,7 @@ class FooAVeryVeryLongClass
     /**
      * A very long and complicated class method
      */
-    public function example()
+    public function example3()
     {
         if ($a == $b) {
             if ($a1 == $b1) {
@@ -291,7 +291,7 @@ class FooAVeryVeryLongClass
     /**
      * A very long and complicated class method
      */
-    public function example()
+    public function example4()
     {
         if ($a == $b) {
             if ($a1 == $b1) {
@@ -386,7 +386,7 @@ class FooAVeryVeryLongClass
     /**
      * A very long and complicated class method
      */
-    public function example()
+    public function example5()
     {
         if ($a == $b) {
             if ($a1 == $b1) {
@@ -481,7 +481,7 @@ class FooAVeryVeryLongClass
     /**
      * A very long and complicated class method
      */
-    public function example()
+    public function example6()
     {
         if ($a == $b) {
             if ($a1 == $b1) {
@@ -576,7 +576,7 @@ class FooAVeryVeryLongClass
     /**
      * A very long and complicated class method
      */
-    public function example()
+    public function example7()
     {
         if ($a == $b) {
             if ($a1 == $b1) {
@@ -671,7 +671,7 @@ class FooAVeryVeryLongClass
     /**
      * A very long and complicated class method
      */
-    public function example()
+    public function example8()
     {
         if ($a == $b) {
             if ($a1 == $b1) {
@@ -766,7 +766,7 @@ class FooAVeryVeryLongClass
     /**
      * A very long and complicated class method
      */
-    public function example()
+    public function example9()
     {
         if ($a == $b) {
             if ($a1 == $b1) {
@@ -861,7 +861,7 @@ class FooAVeryVeryLongClass
     /**
      * A very long and complicated class method
      */
-    public function example()
+    public function example10()
     {
         if ($a == $b) {
             if ($a1 == $b1) {
@@ -956,7 +956,7 @@ class FooAVeryVeryLongClass
     /**
      * A very long and complicated class method
      */
-    public function example()
+    public function example11()
     {
         if ($a == $b) {
             if ($a1 == $b1) {
@@ -1051,7 +1051,7 @@ class FooAVeryVeryLongClass
     /**
      * A very long and complicated class method
      */
-    public function example()
+    public function example12()
     {
         if ($a == $b) {
             if ($a1 == $b1) {
