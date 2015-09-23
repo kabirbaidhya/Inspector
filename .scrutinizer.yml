@@ -1,4 +1,54 @@
-# .scrutinizer.yml
+# language: php
+checks:
+    php:
+        verify_property_names: true
+        verify_argument_usable_as_reference: true
+        verify_access_scope_valid: true
+        useless_calls: true
+        use_statement_alias_conflict: true
+        use_self_instead_of_fqcn: true
+        uppercase_constants: true
+        unused_variables: true
+        unused_properties: true
+        unused_parameters: true
+        unused_methods: true
+        unreachable_code: true
+        too_many_arguments: true
+        switch_fallthrough_commented: true
+        sql_injection_vulnerabilities: true
+        single_namespace_per_use: true
+        simplify_boolean_return: true
+        side_effects_or_types: true
+        security_vulnerabilities: true
+        return_doc_comments: true
+        return_doc_comment_if_not_inferrable: true
+        require_scope_for_properties: true
+        require_scope_for_methods: true
+        require_php_tag_first: true
+        remove_extra_empty_lines: true
+        psr2_switch_declaration: true
+        psr2_class_declaration: true
+        one_class_per_file: true
+        no_short_open_tag: true
+        no_short_method_names:
+            minimum: '3'
+        no_property_on_interface: true
+        no_non_implemented_abstract_methods: true
+        no_exit: true
+        no_eval: true
+        no_error_suppression: true
+        no_debug_code: true
+        no_commented_out_code: true
+        function_in_camel_caps: true
+        instanceof_class_exists: true
+        fix_use_statements:
+            remove_unused: true
+            preserve_multiple: false
+            preserve_blanklines: false
+            order_alphabetically: false
+        classes_in_camel_caps: true
+        code_rating: true
+        duplication: true
 filter:
     excluded_paths:
         - tests/*
@@ -6,4 +56,4 @@ filter:
 build:
     environment:
         php:
-            version: 5.6.9
+            version: 5.5.9
