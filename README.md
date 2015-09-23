@@ -1,5 +1,6 @@
 # Inspector
 [![Code Climate](https://codeclimate.com/github/kabirbaidhya/Inspector/badges/gpa.svg)](https://codeclimate.com/github/kabirbaidhya/Inspector)
+[![Build Status](https://travis-ci.org/kabirbaidhya/Inspector.svg)](https://travis-ci.org/kabirbaidhya/Inspector)
 
 A source code analyzer for PHP.
 
