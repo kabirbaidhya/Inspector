@@ -6,7 +6,7 @@ use Inspector\Application\IocBinder;
 use Inspector\Application\ServiceContainer;
 use Inspector\Application\Commands\CCNCommand;
 use Inspector\Application\Commands\InitCommand;
-use Inspector\Application\Commands\AnalyzeCommand;
+use Inspector\Application\Commands\InspectCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Inspector\Application\AbstractApplication as ConsoleApplication;
@@ -14,7 +14,7 @@ use Inspector\Application\AbstractApplication as ConsoleApplication;
 class Application extends ConsoleApplication
 {
 
-    const APP_NAME = 'Source Code Inspector';
+    const APP_NAME = 'Inspector';
 
     const APP_VERSION = '0.0.1';
 
@@ -45,7 +45,7 @@ class Application extends ConsoleApplication
     {
         return [
             InitCommand::class,
-            AnalyzeCommand::class,
+            InspectCommand::class,
             CCNCommand::class,
         ];
     }

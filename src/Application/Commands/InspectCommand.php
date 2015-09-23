@@ -8,12 +8,12 @@ use Inspector\Application\Service\AnalyzerService;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class AnalyzeCommand extends Command
+class InspectCommand extends Command
 {
 
-    protected $name = 'analyze';
+    protected $name = 'inspect';
 
-    protected $description = 'Analyzes the source code';
+    protected $description = 'Inspects and analyzes the source code';
 
     /**
      * @var AnalyzerService
@@ -36,7 +36,7 @@ class AnalyzeCommand extends Command
     protected function getArguments()
     {
         return [
-            ['path', InputArgument::REQUIRED, 'Source path to analyze']
+            ['path', InputArgument::REQUIRED, 'Source path to inspect']
         ];
     }
 
