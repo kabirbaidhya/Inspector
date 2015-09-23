@@ -22,7 +22,7 @@ abstract class AbstractApplication extends SymfonyApplication
      *
      * @return array
      */
-    protected abstract function getCommands();
+    abstract protected function getCommands();
 
     /**
      * @param InputInterface $input
