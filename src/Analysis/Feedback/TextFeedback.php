@@ -3,6 +3,7 @@
 namespace Inspector\Analysis\Feedback;
 
 use Inspector\Analysis\Exception\AnalysisException;
+use Inspector\Analysis\Result\ResultInterface;
 use PhpParser\Node;
 
 /**
@@ -27,15 +28,15 @@ class TextFeedback implements FeedbackInterface
     /**
      * Generates the feedback.
      *
-     * @param array $feedback List of the error messages
+     * @param ResultInterface[] $feedback List of the analyzed Result
      * @return string
      */
     public function generate(array $feedback)
     {
-        foreach ($feedback as $filename => $messages) {
-            dump('File: ' . $filename);
+        foreach ($feedback as $filename => $result) {
+            dump(sprintf('File: %s  Rating: %s', $filename, $result->getQualityRating()));
             $index = 1;
-            foreach ($messages as $error) {
+            foreach ($result->getMessages() as $error) {
 
                 $rawMessage = $this->getMessage($error);
 

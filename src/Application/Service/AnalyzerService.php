@@ -51,9 +51,9 @@ class AnalyzerService
         $source = $this->scanner->scan($path);
 
         /** @var  AnalysisException[] $feedback */
-        $messages = $this->analyzer->analyze($source, $options);
+        $results = $this->analyzer->analyze($source, $options);
 
-        $feedback = $this->feedback->generate($messages);
+        $feedback = $this->feedback->generate($results);
 
         return $feedback;
     }

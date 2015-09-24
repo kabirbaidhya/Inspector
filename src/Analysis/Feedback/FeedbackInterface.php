@@ -2,14 +2,16 @@
 
 namespace Inspector\Analysis\Feedback;
 
+use Inspector\Analysis\Result\ResultInterface;
+
 interface FeedbackInterface
 {
 
     /**
      * Generates the feedback.
      *
-     * @param array $feedback List of the error messages for each file
+     * @param ResultInterface[] $results List of the Results for each analyzed file
      * @return string
      */
-    public function generate(array $feedback);
+    public function generate(array $results);
 }

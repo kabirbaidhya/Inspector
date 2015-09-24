@@ -3,6 +3,7 @@
 namespace Inspector\Analysis;
 
 use PhpParser\Parser;
+use Inspector\Analysis\Result\Result;
 use Inspector\Filesystem\SourceIterator;
 
 /**
@@ -42,7 +43,8 @@ class Analyzer
         foreach ($source as $filename => $code) {
             $ast = $this->parser->parse($code);
 
-            $result[$filename] = $this->flawDetector->analyze($ast);
+            $issues = $this->flawDetector->analyze($ast);
+            $result[$filename] = new Result($filename, $issues);
         }
 
         return $result;
