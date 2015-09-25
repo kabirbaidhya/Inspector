@@ -3,15 +3,19 @@
 namespace Inspector\Analysis;
 
 use PhpParser\Parser;
+use Inspector\Analysis\Result\Issue;
 use Inspector\Filesystem\SourceIterator;
 use Inspector\Analysis\Result\AnalyzedFile;
-use Inspector\Analysis\Result\AnalysisResult;
+use Inspector\Foundation\MessageProviderAwareTrait;
+use Inspector\Foundation\MessageProviderAwareInterface;
 
 /**
  * @author Kabir Baidhya
  */
-class Analyzer
+class Analyzer implements MessageProviderAwareInterface
 {
+
+    use MessageProviderAwareTrait;
 
     /**
      * @var Parser
@@ -34,21 +38,34 @@ class Analyzer
     }
 
     /**
+     *
      * @param SourceIterator $source
-     * @param array $params
-     * @return AnalysisResult
+     * @param array $options
+     * @return array
      */
-    public function analyze(SourceIterator $source, array $params = [])
+    public function analyze(SourceIterator $source, array $options)
     {
         $result = [];
         foreach ($source as $filename => $code) {
             $ast = $this->parser->parse($code);
 
-            $issues = $this->flawDetector->analyze($ast);
+            $issues = $this->getIssues($ast);
             $result[$filename] = new AnalyzedFile($filename, $issues);
         }
 
-        return new AnalysisResult($params['basePath'], $result);
+        return $result;
+    }
+
+    /**
+     * @param $ast
+     * @return Issue[]
+     */
+    protected function getIssues($ast)
+    {
+        $exceptions = $this->flawDetector->analyze($ast);
+        $issues = $this->messageProvider->translateExceptions($exceptions);
+
+        return $issues;
     }
 
 }

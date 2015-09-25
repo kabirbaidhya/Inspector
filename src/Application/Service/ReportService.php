@@ -5,18 +5,19 @@ namespace Inspector\Application\Service;
 
 use Inspector\Analysis\Report\ReportGenerator;
 use Inspector\Analysis\Result\AnalysisResult;
+use Inspector\Foundation\AbstractService as Service;
 
 
 /**
  * @author Kabir Baidhya
  */
-class ReportService
+class ReportService extends Service
 {
 
     /**
      * @var ReportGenerator
      */
-    private $reportGenerator;
+    protected $reportGenerator;
 
     /**
      * @param ReportGenerator $reportGenerator
@@ -26,12 +27,14 @@ class ReportService
         $this->reportGenerator = $reportGenerator;
     }
 
-    public function generateReport(AnalysisResult $result, $path)
+    /**
+     * @param array $data
+     * @param string $path
+     */
+    public function generateReport(array $data, $path)
     {
         $path = realpath($path) . '/inspector-report';
-        $this->reportGenerator
-            ->setAnalysisResult($result)
-            ->generateTo($path);
+        $this->reportGenerator->generate($path, $data);
     }
 
 }

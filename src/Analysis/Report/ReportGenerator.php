@@ -19,11 +19,6 @@ class ReportGenerator
     protected $filesystem;
 
     /**
-     * @var AnalysisResult
-     */
-    protected $result;
-
-    /**
      * @param Filesystem $filesystem
      */
     public function __construct(Filesystem $filesystem)
@@ -32,24 +27,16 @@ class ReportGenerator
     }
 
     /**
-     * @param AnalysisResult $result
-     * @return $this
-     */
-    public function setAnalysisResult(AnalysisResult $result)
-    {
-        $this->result = $result;
-
-        return $this;
-    }
-
-    /**
      * @param $path
+     * @param array $data
      */
-    public function generateTo($path)
+    public function generate($path, array $data)
     {
         $this->setupDirectory($path);
-
-        $html = $this->renderReport($this->result);
+        $html = $this->renderReport([
+            'analyzedPath' => $data['path'],
+            'analysis' => $data['result']
+        ]);
 
         // Write report html to the file
         $this->filesystem->put($path . '/index.html', $html);
@@ -72,11 +59,12 @@ class ReportGenerator
     /**
      * Renders the Report HTML and returns it
      *
-     * @param AnalysisResult $analysis
+     * @param array $data
      * @return string
      */
-    protected function renderReport(AnalysisResult $analysis)
+    protected function renderReport(array $data)
     {
+        extract($data);
         ob_start();
         require(BASEPATH . 'resources/view/report.php');
 

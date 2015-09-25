@@ -1,17 +1,17 @@
 <?php
-/**
- * @author Kabir Baidhya
- */
 
 namespace Inspector\Application\Service;
 
-
 use Inspector\Analysis\Analyzer;
-use Inspector\Analysis\Exception\AnalysisException;
-use Inspector\Analysis\Feedback\FeedbackInterface;
+use Inspector\Analysis\Result\AnalysisResult;
 use Inspector\Filesystem\CodeScanner;
+use Inspector\Analysis\Feedback\FeedbackInterface;
+use Inspector\Foundation\AbstractService as Service;
 
-class AnalyzerService
+/**
+ * @author Kabir Baidhya
+ */
+class AnalyzerService extends Service
 {
 
     /**
@@ -27,12 +27,12 @@ class AnalyzerService
     /**
      * @var FeedbackInterface
      */
-    private $feedback;
+    protected $feedback;
 
     /**
      * @var ReportService
      */
-    private $reportService;
+    protected $reportService;
 
     /**
      * @param Analyzer $analyzer
@@ -59,16 +59,15 @@ class AnalyzerService
      */
     public function analyze($path, array $options)
     {
+        $path = realpath($path);
         $source = $this->scanner->scan($path);
 
-        $result = $this->analyzer->analyze($source, [
-            'basePath' => realpath($path),
-            'options' => $options
-        ]);
+        $rawResult = $this->analyzer->analyze($source, $options);
+        $result = $this->process($rawResult);
 
         if ($options['generate-report'] === true) {
-            $path = $options['path'];
-            $this->reportService->generateReport($result, $path);
+            $reportPath = $options['path'];
+            $this->reportService->generateReport(compact('result', 'path'), $reportPath);
 
             return sprintf('Report generated to %s ', $path);
         } else {
@@ -76,6 +75,21 @@ class AnalyzerService
 
             return $feedback;
         }
+    }
+
+    /**
+     * Process raw analysis raw result
+     *
+     * @param array $rawResult
+     * @return AnalysisResult
+     */
+    public function process(array $rawResult)
+    {
+        foreach ($rawResult as &$file) {
+//            $file->
+        }
+
+        return new AnalysisResult($rawResult);
     }
 
 }

@@ -1,16 +1,16 @@
 <?php
 return [
     // Lines of Code
-    'MethodTooLong' => 'Method %s is too long. ',
-    'FunctionTooLong' => 'Function %s is too long. ',
-    'ClassTooLong' => 'Class %s is very long. ',
+    'MethodTooLong' => 'Method <code>%s</code> is too long. ',
+    'FunctionTooLong' => 'Function <code>%s</code> is too long. ',
+    'ClassTooLong' => 'Class <code>%s</code> is very long. ',
     // Complexity
-    'MethodTooComplex' => 'Method %s is very complex. (CCN = %s)',
-    'FunctionTooComplex' => 'Function %s is too complex. (CCN = %s)',
-    'ClassTooComplex' => 'Class %s is very complex. (CCN = %s)',
+    'MethodTooComplex' => 'Method <code>%s</code> is very complex. ',
+    'FunctionTooComplex' => 'Function <code>%s</code> is too complex. ',
+    'ClassTooComplex' => 'Class <code>%s</code> is very complex. ',
     //Eval
-    'EvalDetected' => 'Use of eval() detected at line %s. \nEval language construct is very dangerous as it allows  execution of arbitrary PHP code. Its usage is strongly discouraged.',
+    'EvalDetected' => 'Use of <code>eval()</code> detected at line %s. \nEval language construct is very dangerous as it allows  execution of arbitrary PHP code. Its usage is strongly discouraged.',
     // die() or exit()
-    'DieDetected' => 'Use of die() or exit() detected at line %s. \nRelying on these language constructs for error handling suggests a poorly designed system, as there are better ways to do it(eg: Exceptions). ',
-    'GotoDetected' => 'Use of goto detected at line %s. It is a bad practice to use them. '
+    'DieDetected' => 'Use of <code>die()</code> or <code>exit()</code> detected at line %s. Relying on these language constructs for error handling suggests a poorly designed system, as there are better ways to do it(eg: <code>Exceptions</code>). ',
+    'GotoDetected' => 'Use of <code>goto</code> detected at line %s. It is a bad practice to use them. '
 ];

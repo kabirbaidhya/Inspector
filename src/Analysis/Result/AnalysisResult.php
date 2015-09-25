@@ -18,18 +18,11 @@ class AnalysisResult
     protected $analyzedFiles;
 
     /**
-     * @var string
-     */
-    protected $basePath;
-
-    /**
-     * @param string $basePath
      * @param AnalyzedFile[] $analyzedFiles
      */
-    public function __construct($basePath, array $analyzedFiles)
+    public function __construct(array $analyzedFiles)
     {
         $this->analyzedFiles = $analyzedFiles;
-        $this->basePath = $basePath;
     }
 
     public function getCodeRating()
@@ -39,7 +32,7 @@ class AnalysisResult
             $totalRating += $file->getQuality();
         }
 
-        $totalFiles = $this->totalFiles();
+        $totalFiles = $this->countFiles();
 
         $rating = number_format(($totalFiles === 0) ? 0 : (($totalRating / $totalFiles) / self::MAX_CODE_RATING_FILE) * self::MAX_CODE_RATING,
             2);
@@ -47,7 +40,7 @@ class AnalysisResult
         return $rating;
     }
 
-    public function totalFiles()
+    public function countFiles()
     {
         return count($this->analyzedFiles);
     }
@@ -67,15 +60,23 @@ class AnalysisResult
             9 => 'Very Good',
             10 => 'Very Good',
         ];
-        $rating = floor($this->getCodeRating());
+        $rating = (int)floor($this->getCodeRating());
 
         return $ratingText[$rating];
     }
 
     /**
+     * @return string
+     */
+    public function getRatingDescription()
+    {
+        return sprintf('%s out of 10 - %s', $this->getCodeRating(), $this->getRatingText());
+    }
+
+    /**
      * @return int
      */
-    public function getTotalIssues()
+    public function countIssues()
     {
         $issueCount = 0;
         foreach ($this->getFiles() as $file) {
@@ -91,14 +92,6 @@ class AnalysisResult
     public function getFiles()
     {
         return $this->analyzedFiles;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBasePath()
-    {
-        return $this->basePath;
     }
 
 }

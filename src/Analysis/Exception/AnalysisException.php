@@ -33,6 +33,14 @@ class AnalysisException extends Exception
     }
 
     /**
+     * @return int
+     */
+    public function getStartLine()
+    {
+        return $this->node->getLine();
+    }
+
+    /**
      * @param Node $node
      * @return $this
      */
@@ -51,7 +59,18 @@ class AnalysisException extends Exception
      */
     public static function withNode(Node $node)
     {
+
         return (new static())->setNode($node);
+    }
+
+    /**
+     * Returns params for the message.
+     *
+     * @return array
+     */
+    public function getMessageParams()
+    {
+        return [];
     }
 
 }

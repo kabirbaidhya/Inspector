@@ -3,6 +3,7 @@
 namespace Inspector\Application;
 
 use Inspector\Analysis\Complexity\ComplexityComputerAwareInterface;
+use Inspector\Foundation\MessageProviderAwareInterface;
 
 /**
  * @author Kabir Baidhya
@@ -31,6 +32,9 @@ class Bootstrapper
     {
         if ($object instanceof ComplexityComputerAwareInterface) {
             $object->setComplexityComputer($this->container['complexity-computer']);
+        }
+        if ($object instanceof MessageProviderAwareInterface) {
+            $object->setMessageProvider($this->container['message-provider']);
         }
 
         return $object;

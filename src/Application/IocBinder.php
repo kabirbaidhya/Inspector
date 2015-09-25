@@ -8,6 +8,7 @@ use Inspector\Analysis\Analyzer;
 use Inspector\Analysis\FlawDetector;
 use Inspector\Filesystem\CodeScanner;
 use Illuminate\Filesystem\Filesystem;
+use Inspector\Foundation\MessageProvider;
 use Inspector\Analysis\Complexity\CCNChecker;
 use Symfony\Component\Console\Input\ArgvInput;
 use Inspector\Analysis\Report\ReportGenerator;
@@ -19,6 +20,11 @@ use Symfony\Component\Console\Output\ConsoleOutput;
 use Inspector\Analysis\Complexity\ComplexityComputer;
 use Inspector\Analysis\Feedback\ConsolePlainFeedback;
 
+/**
+ * TODO: Remove this class and instead introduce laravel style Service Providers
+ *
+ * @author Kabir Baidhya
+ */
 class IocBinder
 {
 
@@ -88,9 +94,11 @@ class IocBinder
         });
 
         $this->container->bind('analyzer', function ($container) {
-            return new Analyzer(
-                $container['parser'],
-                $container['flaw-detector']
+            return $this->bootstrap(
+                new Analyzer(
+                    $container['parser'],
+                    $container['flaw-detector']
+                )
             );
         });
 
@@ -121,6 +129,15 @@ class IocBinder
             );
         });
 
+    }
+
+    /**
+     * @param $object
+     * @return mixed
+     */
+    public function bootstrap($object)
+    {
+        return $this->container['bootstrapper']->bootstrap($object);
     }
 
 }

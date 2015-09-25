@@ -11,7 +11,7 @@ use Inspector\Analysis\FlawDetection\CheckerInterface;
  * Detects and returns all the flaws in a method/function
  * @author Kabir Baidhya
  */
-class FlawDetector implements InspectorInterface
+class FlawDetector
 {
 
     /**
@@ -61,7 +61,6 @@ class FlawDetector implements InspectorInterface
 
         return $errors;
     }
-
 
     /**
      * @return array
