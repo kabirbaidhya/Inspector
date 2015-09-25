@@ -49,16 +49,16 @@ class AnalysisResult
     {
         $ratingText = [
             0 => 'No Rating',
-            1 => 'Good',
-            2 => 'Very Good',
+            1 => 'Very Bad',
+            2 => 'Very Bad',
             3 => 'Very Good',
-            4 => 'Very Good',
-            5 => 'Very Good',
-            6 => 'Very Good',
-            7 => 'Very Good',
+            4 => 'Bad',
+            5 => 'Moderate',
+            6 => 'Good',
             8 => 'Very Good',
+            7 => 'Very Good',
             9 => 'Very Good',
-            10 => 'Very Good',
+            10 => 'Awesome',
         ];
         $rating = (int)floor($this->getCodeRating());
 

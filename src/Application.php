@@ -4,7 +4,6 @@ namespace Inspector;
 
 use Inspector\Application\IocBinder;
 use Inspector\Application\ServiceContainer;
-use Inspector\Application\Commands\CCNCommand;
 use Inspector\Application\Commands\InitCommand;
 use Inspector\Application\Commands\InspectCommand;
 use Symfony\Component\Console\Input\InputInterface;
@@ -46,7 +45,6 @@ class Application extends ConsoleApplication
         return [
             InitCommand::class,
             InspectCommand::class,
-            CCNCommand::class,
         ];
     }
 
