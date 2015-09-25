@@ -2,11 +2,17 @@
 
 namespace Inspector\Analysis\Exception;
 
+use Inspector\Analysis\Complexity\ComplexityComputer;
 use PhpParser\Node;
 use Inspector\Application\Exception\Exception;
 
 class AnalysisException extends Exception
 {
+
+    /**
+     * @var ComplexityComputer
+     */
+    protected static $complexityComputer;
 
     /**
      * @var Node
@@ -65,4 +71,19 @@ class AnalysisException extends Exception
         return [];
     }
 
+    public static function setComplexityComputer(ComplexityComputer $complexityComputer)
+    {
+        static::$complexityComputer = $complexityComputer;
+    }
+
+    /**
+     * Calculates Cylomatic Complexity Number.
+     *
+     * @param Node $node
+     * @return int
+     */
+    protected static function calculateCCN(Node $node)
+    {
+        return static::$complexityComputer->compute($node);
+    }
 }

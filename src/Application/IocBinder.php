@@ -14,6 +14,7 @@ use Symfony\Component\Console\Input\ArgvInput;
 use Inspector\Analysis\Report\ReportGenerator;
 use Inspector\Application\Service\ReportService;
 use Inspector\Application\Commands\InspectCommand;
+use Inspector\Analysis\Exception\AnalysisException;
 use Inspector\Analysis\Feedback\FeedbackInterface;
 use Inspector\Application\Service\AnalyzerService;
 use Symfony\Component\Console\Output\ConsoleOutput;
@@ -70,6 +71,7 @@ class IocBinder
         });
 
         $this->container->bind('complexity-computer', function () {
+
             // Complexity Computer based upon Cyclomatic Complexity Number
             return new ComplexityComputer(new CCNChecker());
         });
@@ -84,6 +86,9 @@ class IocBinder
     public function postBind(array $configuration)
     {
         $this->container->instance('config', $configuration);
+
+        // Setup AnalysisException ComplexityComputing
+        AnalysisException::setComplexityComputer($this->container['complexity-computer']);
 
         $this->container->bind('message-provider', function ($container) {
             return new MessageProvider($container['config']);

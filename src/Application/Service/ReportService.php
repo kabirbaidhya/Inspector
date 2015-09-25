@@ -30,11 +30,14 @@ class ReportService extends Service
     /**
      * @param array $data
      * @param string $path
+     * @return array
      */
     public function generateReport(array $data, $path)
     {
         $path = realpath($path) . '/inspector-report';
         $this->reportGenerator->generate($path, $data);
+
+        return compact('path');
     }
 
 }

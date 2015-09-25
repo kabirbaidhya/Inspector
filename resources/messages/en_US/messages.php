@@ -5,9 +5,9 @@ return [
     'FunctionTooLong' => 'Function <code>%s</code> is too long. ',
     'ClassTooLong' => 'Class <code>%s</code> is very long. ',
     // Complexity
-    'MethodTooComplex' => 'Method <code>%s</code> is very complex. ',
-    'FunctionTooComplex' => 'Function <code>%s</code> is too complex. ',
-    'ClassTooComplex' => 'Class <code>%s</code> is very complex. ',
+    'MethodTooComplex' => 'Method <code>%s</code> is very complex. With a CCN of %s. ',
+    'FunctionTooComplex' => 'Function <code>%s</code> is very complex.  With a CCN of %s',
+    'ClassTooComplex' => 'Class <code>%s</code> is very complex.  With a CCN of %s',
     //Eval
     'EvalDetected' => 'Use of <code>eval()</code> detected at line %s. \nEval language construct is very dangerous as it allows  execution of arbitrary PHP code. Its usage is strongly discouraged.',
     // die() or exit()

@@ -69,6 +69,10 @@ class InspectCommand extends Command
         $path = $input->getArgument('path');
         $options = $input->getOptions();
 
+        if (!$options['quiet']) {
+            $output->writeln("\n" . '<info>Inspecting</info> ' . $path);
+        }
+
         $feedback = $this->analyzerService->analyze($path, $options);
         $output->writeln($feedback . "\n");
     }

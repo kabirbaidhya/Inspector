@@ -13,6 +13,6 @@ class ClassTooComplexException extends AnalysisException
      */
     public function getMessageParams()
     {
-        return [$this->getNode()->name];
+        return [$this->getNode()->name, self::calculateCCN($this->getNode())];
     }
 }

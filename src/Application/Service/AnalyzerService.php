@@ -67,9 +67,9 @@ class AnalyzerService extends Service
 
         if ($options['generate-report'] === true) {
             $reportPath = $options['path'];
-            $this->reportService->generateReport(compact('result', 'path'), $reportPath);
+            $report = $this->reportService->generateReport(compact('result', 'path'), $reportPath);
 
-            return sprintf('Report generated to %s ', $path);
+            return sprintf('<info>Report generated to</info> %s ', $report['path']);
         } else {
             $feedback = $this->feedback->generate($result);
 
