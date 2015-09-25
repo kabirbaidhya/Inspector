@@ -30,15 +30,26 @@ class AnalyzerService
     private $feedback;
 
     /**
+     * @var ReportService
+     */
+    private $reportService;
+
+    /**
      * @param Analyzer $analyzer
      * @param CodeScanner $scanner
      * @param FeedbackInterface $feedback
+     * @param ReportService $reportService
      */
-    public function __construct(Analyzer $analyzer, CodeScanner $scanner, FeedbackInterface $feedback)
-    {
+    public function __construct(
+        Analyzer $analyzer,
+        CodeScanner $scanner,
+        FeedbackInterface $feedback,
+        ReportService $reportService
+    ) {
         $this->analyzer = $analyzer;
         $this->scanner = $scanner;
         $this->feedback = $feedback;
+        $this->reportService = $reportService;
     }
 
     /**
@@ -50,14 +61,21 @@ class AnalyzerService
     {
         $source = $this->scanner->scan($path);
 
-        /** @var  AnalysisException[] $feedback */
-        $results = $this->analyzer->analyze($source, [
+        $result = $this->analyzer->analyze($source, [
             'basePath' => realpath($path),
             'options' => $options
         ]);
 
-        $feedback = $this->feedback->generate($results);
+        if ($options['generate-report'] === true) {
+            $path = $options['path'];
+            $this->reportService->generateReport($result, $path);
 
-        return $feedback;
+            return sprintf('Report generated to %s ', $path);
+        } else {
+            $feedback = $this->feedback->generate($result);
+
+            return $feedback;
+        }
     }
+
 }

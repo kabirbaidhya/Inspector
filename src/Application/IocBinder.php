@@ -5,6 +5,8 @@ namespace Inspector\Application;
 use Inspector\Analysis\Complexity\CCNChecker;
 use Inspector\Analysis\Complexity\ComplexityComputer;
 use Inspector\Analysis\Feedback\ConsolePlainFeedback;
+use Inspector\Analysis\Report\ReportGenerator;
+use Inspector\Application\Service\ReportService;
 use PhpParser\Lexer;
 use PhpParser\Parser;
 use Inspector\Analysis\Analyzer;
@@ -93,11 +95,20 @@ class IocBinder
             return new ConsolePlainFeedback($container['config'], $container['output']);
         });
 
+        $this->container->bind('report-generator', function ($container) {
+            return new ReportGenerator($container['filesystem']);
+        });
+
+        $this->container->bind('report-service', function ($container) {
+            return new ReportService($container['report-generator']);
+        });
+
         $this->container->bind('analyzer-service', function ($container) {
             return new AnalyzerService(
                 $container['analyzer'],
                 $container['code-scanner'],
-                $container[FeedbackInterface::class]
+                $container[FeedbackInterface::class],
+                $container['report-service']
             );
         });
 

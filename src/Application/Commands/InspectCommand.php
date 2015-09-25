@@ -6,6 +6,7 @@ use Inspector\Application\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Inspector\Application\Service\AnalyzerService;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class InspectCommand extends Command
@@ -46,7 +47,14 @@ class InspectCommand extends Command
     protected function getOptions()
     {
         return [
-
+            ['generate-report', 'g', InputOption::VALUE_NONE, 'Generates analysis report'],
+            ['path', 'p', InputOption::VALUE_OPTIONAL, 'Path to generate the report', getcwd()],
+            [
+                'show',
+                'w',
+                InputOption::VALUE_NONE,
+                'When used with \'--generate-report\' option runs the Web server to show the generated report. '
+            ],
         ];
     }
 
@@ -62,10 +70,7 @@ class InspectCommand extends Command
         $options = $input->getOptions();
 
         $feedback = $this->analyzerService->analyze($path, $options);
-
-        $output->writeln('FeedBack');
-
-        $output->write($feedback);
+        $output->writeln($feedback . "\n");
     }
 
 }

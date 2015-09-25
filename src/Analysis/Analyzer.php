@@ -36,7 +36,7 @@ class Analyzer
     /**
      * @param SourceIterator $source
      * @param array $params
-     * @return array
+     * @return AnalysisResult
      */
     public function analyze(SourceIterator $source, array $params = [])
     {
@@ -49,8 +49,6 @@ class Analyzer
         }
 
         return new AnalysisResult($params['basePath'], $result);
-
-        return $result;
     }
 
 }
