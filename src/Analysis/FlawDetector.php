@@ -9,6 +9,7 @@ use Inspector\Analysis\FlawDetection\CheckerInterface;
 
 /**
  * Detects and returns all the flaws in a method/function
+ *
  * @author Kabir Baidhya
  */
 class FlawDetector

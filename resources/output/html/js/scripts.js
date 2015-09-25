@@ -1,3 +1,3 @@
-$(function() {
-	prettyPrint();
+$(function () {
+    prettyPrint();
 });

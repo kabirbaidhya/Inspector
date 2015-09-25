@@ -1,10 +1,8 @@
 <?php
 
-
 namespace Inspector\Analysis\Result;
 
 use Inspector\Analysis\Exception\AnalysisException;
-
 
 /**
  * @author Kabir Baidhya
@@ -34,13 +32,18 @@ class Issue
         return $this->message;
     }
 
-    public function getCodePart()
+    public function getStartLine()
     {
-        //todo
+        return $this->getNode()->getAttribute('startLine');
     }
 
-    public function startingLine()
+    public function getNode()
     {
-        return $this->exception->getStartLine();
+        return $this->exception->getNode();
+    }
+
+    public function getEndLine()
+    {
+        return $this->getNode()->getAttribute('endLine');
     }
 }

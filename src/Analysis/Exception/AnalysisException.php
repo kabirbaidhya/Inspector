@@ -33,14 +33,6 @@ class AnalysisException extends Exception
     }
 
     /**
-     * @return int
-     */
-    public function getStartLine()
-    {
-        return $this->node->getLine();
-    }
-
-    /**
      * @param Node $node
      * @return $this
      */

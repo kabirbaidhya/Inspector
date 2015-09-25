@@ -49,7 +49,10 @@ class Analyzer implements MessageProviderAwareInterface
         foreach ($source as $filename => $code) {
             $ast = $this->parser->parse($code);
 
-            $issues = $this->getIssues($ast);
+            $issues = $this->getIssues($ast, [
+                'filename' => $filename
+            ]);
+
             $result[$filename] = new AnalyzedFile($filename, $issues);
         }
 
@@ -58,9 +61,10 @@ class Analyzer implements MessageProviderAwareInterface
 
     /**
      * @param $ast
+     * @param array $data
      * @return Issue[]
      */
-    protected function getIssues($ast)
+    protected function getIssues($ast, array $data)
     {
         $exceptions = $this->flawDetector->analyze($ast);
         $issues = $this->messageProvider->translateExceptions($exceptions);
