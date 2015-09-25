@@ -2,23 +2,22 @@
 
 namespace Inspector\Application;
 
-use Inspector\Analysis\Complexity\CCNChecker;
-use Inspector\Analysis\Complexity\ComplexityComputer;
-use Inspector\Analysis\Feedback\ConsolePlainFeedback;
-use Inspector\Analysis\Report\ReportGenerator;
-use Inspector\Application\Service\ReportService;
 use PhpParser\Lexer;
 use PhpParser\Parser;
 use Inspector\Analysis\Analyzer;
 use Inspector\Analysis\FlawDetector;
 use Inspector\Filesystem\CodeScanner;
 use Illuminate\Filesystem\Filesystem;
-use Inspector\Analysis\Feedback\TextFeedback;
+use Inspector\Analysis\Complexity\CCNChecker;
 use Symfony\Component\Console\Input\ArgvInput;
+use Inspector\Analysis\Report\ReportGenerator;
+use Inspector\Application\Service\ReportService;
 use Inspector\Application\Commands\InspectCommand;
 use Inspector\Analysis\Feedback\FeedbackInterface;
 use Inspector\Application\Service\AnalyzerService;
 use Symfony\Component\Console\Output\ConsoleOutput;
+use Inspector\Analysis\Complexity\ComplexityComputer;
+use Inspector\Analysis\Feedback\ConsolePlainFeedback;
 
 class IocBinder
 {
@@ -79,6 +78,10 @@ class IocBinder
     public function postBind(array $configuration)
     {
         $this->container->instance('config', $configuration);
+
+        $this->container->bind('message-provider', function ($container) {
+            return new MessageProvider($container['config']);
+        });
 
         $this->container->bind('flaw-detector', function ($container) {
             return new FlawDetector($container['bootstrapper'], $container['config']);

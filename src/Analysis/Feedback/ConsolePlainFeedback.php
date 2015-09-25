@@ -2,9 +2,9 @@
 
 namespace Inspector\Analysis\Feedback;
 
-use Inspector\Analysis\Exception\AnalysisException;
-use Inspector\Analysis\Result\AnalysisResult;
 use PhpParser\Node;
+use Inspector\Analysis\Result\AnalysisResult;
+use Inspector\Analysis\Exception\AnalysisException;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
