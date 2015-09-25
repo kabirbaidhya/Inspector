@@ -3,8 +3,9 @@
 namespace Inspector\Analysis;
 
 use PhpParser\Parser;
-use Inspector\Analysis\Result\Result;
 use Inspector\Filesystem\SourceIterator;
+use Inspector\Analysis\Result\AnalyzedFile;
+use Inspector\Analysis\Result\AnalysisResult;
 
 /**
  * @author Kabir Baidhya
@@ -34,18 +35,20 @@ class Analyzer
 
     /**
      * @param SourceIterator $source
-     * @param array $options
+     * @param array $params
      * @return array
      */
-    public function analyze(SourceIterator $source, array $options = [])
+    public function analyze(SourceIterator $source, array $params = [])
     {
         $result = [];
         foreach ($source as $filename => $code) {
             $ast = $this->parser->parse($code);
 
             $issues = $this->flawDetector->analyze($ast);
-            $result[$filename] = new Result($filename, $issues);
+            $result[$filename] = new AnalyzedFile($filename, $issues);
         }
+
+        return new AnalysisResult($params['basePath'], $result);
 
         return $result;
     }

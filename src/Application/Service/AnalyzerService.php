@@ -51,7 +51,10 @@ class AnalyzerService
         $source = $this->scanner->scan($path);
 
         /** @var  AnalysisException[] $feedback */
-        $results = $this->analyzer->analyze($source, $options);
+        $results = $this->analyzer->analyze($source, [
+            'basePath' => realpath($path),
+            'options' => $options
+        ]);
 
         $feedback = $this->feedback->generate($results);
 

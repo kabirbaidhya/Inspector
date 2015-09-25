@@ -22,6 +22,17 @@ class AnalysisException extends Exception
     }
 
     /**
+     * @return int|array
+     */
+    public function getLineNumber()
+    {
+        $startLine = $this->node->getAttribute('startLine');
+        $endLine = $this->node->getAttribute('endLine');
+
+        return ($startLine === $endLine) ? $startLine : [$startLine, $endLine];
+    }
+
+    /**
      * @param Node $node
      * @return $this
      */

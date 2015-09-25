@@ -2,6 +2,7 @@
 
 namespace Inspector\Analysis\Feedback;
 
+use Inspector\Analysis\Result\AnalysisResult;
 use Inspector\Analysis\Result\ResultInterface;
 
 interface FeedbackInterface
@@ -10,8 +11,8 @@ interface FeedbackInterface
     /**
      * Generates the feedback.
      *
-     * @param ResultInterface[] $results List of the Results for each analyzed file
+     * @param AnalysisResult $result
      * @return string
      */
-    public function generate(array $results);
+    public function generate(AnalysisResult $result);
 }

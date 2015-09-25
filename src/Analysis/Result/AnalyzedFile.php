@@ -5,7 +5,7 @@ namespace Inspector\Analysis\Result;
 /**
  * @author Kabir Baidhya
  */
-class Result implements ResultInterface
+class AnalyzedFile implements AnalyzedFileInterface
 {
 
     /**
@@ -32,14 +32,6 @@ class Result implements ResultInterface
     public function getFilename()
     {
         return $this->filename;
-    }
-
-    /**
-     * @return array
-     */
-    public function getMessages()
-    {
-        return $this->issues;
     }
 
     /**
@@ -77,5 +69,29 @@ class Result implements ResultInterface
         ];
 
         return $ratings[$this->getQuality()];
+    }
+
+    /**
+     * @return array
+     */
+    public function getIssues()
+    {
+        return $this->issues;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIssueCount()
+    {
+        return count($this->issues);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isOkay()
+    {
+        return ($this->getIssueCount() === 0);
     }
 }

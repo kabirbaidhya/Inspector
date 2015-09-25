@@ -4,6 +4,7 @@ namespace Inspector\Application;
 
 use Inspector\Analysis\Complexity\CCNChecker;
 use Inspector\Analysis\Complexity\ComplexityComputer;
+use Inspector\Analysis\Feedback\ConsolePlainFeedback;
 use PhpParser\Lexer;
 use PhpParser\Parser;
 use Inspector\Analysis\Analyzer;
@@ -89,7 +90,7 @@ class IocBinder
         });
 
         $this->container->bind(FeedbackInterface::class, function ($container) {
-            return new TextFeedback($container['config']);
+            return new ConsolePlainFeedback($container['config'], $container['output']);
         });
 
         $this->container->bind('analyzer-service', function ($container) {

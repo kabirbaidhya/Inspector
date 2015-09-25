@@ -7,7 +7,7 @@ namespace Inspector\Analysis\Result;
 /**
  * @author Kabir Baidhya
  */
-interface ResultInterface
+interface AnalyzedFileInterface
 {
 
     /**
@@ -20,7 +20,12 @@ interface ResultInterface
     /**
      * @return array
      */
-    public function getMessages();
+    public function getIssues();
+
+    /**
+     * @return int
+     */
+    public function getIssueCount();
 
     /**
      * Calculates the (Numeric) Quality index of an analyzed file.
@@ -35,4 +40,9 @@ interface ResultInterface
      * @return string
      */
     public function getQualityRating();
+
+    /**
+     * @return bool
+     */
+    public function isOkay();
 }
