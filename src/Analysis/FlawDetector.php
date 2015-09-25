@@ -2,8 +2,8 @@
 
 namespace Inspector\Analysis;
 
-use Inspector\Application\Bootstrapper;
 use PhpParser\Node;
+use Inspector\Application\Bootstrapper;
 use Inspector\Misc\ParametersInterface;
 use Inspector\Analysis\FlawDetection\CheckerInterface;
 
