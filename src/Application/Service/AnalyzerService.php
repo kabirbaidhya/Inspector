@@ -71,7 +71,9 @@ class AnalyzerService extends Service
 
             return sprintf('<info>Report generated to</info> %s ', $report['path']);
         } else {
-            $feedback = $this->feedback->generate($result);
+            $feedback = $this->feedback->generate($result, [
+                'basePath' => $path
+            ]);
 
             return $feedback;
         }

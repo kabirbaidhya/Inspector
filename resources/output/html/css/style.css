@@ -32,6 +32,14 @@ code {
     display: block;
 }
 
+.filename {
+    color: rgba(51, 122, 183, 0.7);
+}
+
+.filename .highlight {
+    color: #23527c;
+}
+
 .highlights .badge {
     font-size: 80%;
 }

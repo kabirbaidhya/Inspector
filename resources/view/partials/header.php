@@ -15,5 +15,8 @@
         </li>
         <li>Files Scanned <span class="badge"><?php echo $analysis->countFiles() ?></span></li>
         <li>Issues <span class="badge"><?php echo $analysis->countIssues() ?></span></li>
+        <li>
+            <button id="filter-issues" data-showing-all="true" class="btn btn-sm">Show only Issues</button>
+        </li>
     </ul>
 </header>

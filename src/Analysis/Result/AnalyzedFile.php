@@ -44,6 +44,19 @@ class AnalyzedFile implements AnalyzedFileInterface
     }
 
     /**
+     * Gets path relative to a base path
+     *
+     * @param $basePath
+     * @return string
+     */
+    public function getRelativeFilename($basePath)
+    {
+        $basePath = realpath($basePath);
+
+        return ltrim(str_replace($basePath, '', $this->filename), '\\/');
+    }
+
+    /**
      * Calculates the Quality index of an analyzed file.
      *
      * @return int
@@ -81,7 +94,7 @@ class AnalyzedFile implements AnalyzedFileInterface
     }
 
     /**
-     * @return array
+     * @return Issue[]
      */
     public function getIssues()
     {
