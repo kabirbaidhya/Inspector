@@ -53,6 +53,10 @@ class AnalyzedFile implements AnalyzedFileInterface
     {
         $basePath = realpath($basePath);
 
+        if ($basePath === $this->filename) {
+            return basename($this->filename);
+        }
+
         return ltrim(str_replace($basePath, '', $this->filename), '\\/');
     }
 

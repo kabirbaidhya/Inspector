@@ -42,7 +42,7 @@ class ConsolePlainFeedback implements FeedbackInterface
     public function generate(AnalysisResult $result, array $params)
     {
         $this->output->writeln(
-            sprintf('<info>Code Rating:</info> %s', $result->getRatingDescription())
+            "\n" . sprintf('<info>Code Rating:</info> %s', $result->getRatingDescription())
         );
 
         $fileIndex = 1;
@@ -59,7 +59,7 @@ class ConsolePlainFeedback implements FeedbackInterface
             foreach ($file->getIssues() as $issue) {
 
                 $this->output->writeln(
-                    sprintf(' Issue %d: %s', $index, $issue->getMessage())
+                    sprintf(' Issue %d: %s', $index, strip_tags($issue->getMessage()))
                 );
                 $index++;
             }

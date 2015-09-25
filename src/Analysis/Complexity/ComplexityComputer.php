@@ -6,7 +6,7 @@ use PhpParser\Node;
 use Inspector\Analysis\NodeWalker;
 
 /**
- * Computes the Cyclomatic complexity of a method/function
+ * Computes the Cyclomatic complexity of a AST node
  *
  * @author Kabir Baidhya
  */
