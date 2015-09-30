@@ -3,7 +3,6 @@
 namespace Inspector\Analysis\Feedback;
 
 use Inspector\Analysis\Result\AnalysisResult;
-use Inspector\Analysis\Result\ResultInterface;
 
 interface FeedbackInterface
 {

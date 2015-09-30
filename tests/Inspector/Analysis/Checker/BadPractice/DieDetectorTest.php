@@ -1,9 +1,10 @@
 <?php
 
-namespace Inspector\Test;
+namespace Inspector\Test\Analysis\Checker\BadPractice;
 
 use PhpParser\Node;
-use Inspector\Analysis\FlawDetection\DieDetector;
+use Inspector\Test\TestCase;
+use Inspector\Analysis\Checker\BadPractice\DieDetector;
 use Inspector\Analysis\Exception\DieDetectedException;
 
 class DieDetectorTest extends TestCase

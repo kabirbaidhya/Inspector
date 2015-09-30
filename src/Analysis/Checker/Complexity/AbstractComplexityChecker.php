@@ -1,10 +1,11 @@
 <?php
 
-namespace Inspector\Analysis\FlawDetection;
+namespace Inspector\Analysis\Checker\Complexity;
 
 use PhpParser\Node;
 use PhpParser\Node\Stmt\ClassMethod;
 use Inspector\Misc\ParametersInterface;
+use Inspector\Analysis\Checker\CheckerInterface;
 use Inspector\Analysis\Complexity\ComplexityComputer;
 use Inspector\Analysis\Exception\MethodTooComplexException;
 use Inspector\Analysis\Complexity\ComplexityComputerAwareInterface;

@@ -1,9 +1,10 @@
 <?php
 
-namespace Inspector\Analysis\FlawDetection;
+namespace Inspector\Analysis\Checker\BadPractice;
 
 use PhpParser\Node;
 use PhpParser\Node\Expr\Eval_;
+use Inspector\Analysis\Checker\CheckerInterface;
 use Inspector\Analysis\Exception\EvalDetectedException;
 
 /**

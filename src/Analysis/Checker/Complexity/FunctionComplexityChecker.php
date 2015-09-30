@@ -1,11 +1,12 @@
 <?php
 
-namespace Inspector\Analysis\FlawDetection;
+namespace Inspector\Analysis\Checker\Complexity;
 
 use PhpParser\Node;
 use PhpParser\Node\Stmt\Function_;
 use Inspector\Analysis\Exception\FunctionTooComplexException;
-use Inspector\Analysis\FlawDetection\AbstractComplexityChecker as ComplexityChecker;
+use Inspector\Analysis\Checker\Complexity\AbstractComplexityChecker as ComplexityChecker;
+
 
 class FunctionComplexityChecker extends ComplexityChecker
 {

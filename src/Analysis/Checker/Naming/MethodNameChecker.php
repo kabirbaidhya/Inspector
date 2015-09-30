@@ -1,12 +1,17 @@
 <?php
 
-namespace Inspector\Analysis\FlawDetection;
+namespace Inspector\Analysis\Checker\Naming;
 
 use PhpParser\Node;
 use Inspector\Application\Exception\Exception;
+use Inspector\Analysis\Checker\CheckerInterface;
 use Inspector\Analysis\Exception\AnalysisException;
 
-interface CheckerInterface
+
+/**
+ * @author Kabir Baidhya
+ */
+class MethodNameChecker implements CheckerInterface
 {
 
     /**
@@ -17,5 +22,8 @@ interface CheckerInterface
      * @throws Exception
      * @throws AnalysisException
      */
-    public function check(Node $node);
+    public function check(Node $node)
+    {
+
+    }
 }

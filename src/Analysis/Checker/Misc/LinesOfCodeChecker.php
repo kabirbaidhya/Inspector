@@ -1,12 +1,13 @@
 <?php
 
-namespace Inspector\Analysis\FlawDetection;
+namespace Inspector\Analysis\Checker\Misc;
 
 use PhpParser\Node;
 use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\Function_;
 use PhpParser\Node\Stmt\ClassMethod;
 use Inspector\Misc\ParametersInterface;
+use Inspector\Analysis\Checker\CheckerInterface;
 use Inspector\Analysis\Exception\ClassTooLongException;
 use Inspector\Analysis\Exception\MethodTooLongException;
 use Inspector\Analysis\Exception\FunctionTooLongException;

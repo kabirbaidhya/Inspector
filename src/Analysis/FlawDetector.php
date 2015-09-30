@@ -5,7 +5,7 @@ namespace Inspector\Analysis;
 use PhpParser\Node;
 use Inspector\Application\Bootstrapper;
 use Inspector\Misc\ParametersInterface;
-use Inspector\Analysis\FlawDetection\CheckerInterface;
+use Inspector\Analysis\Checker\CheckerInterface;
 
 /**
  * Detects and returns all the flaws in a method/function

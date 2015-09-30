@@ -1,9 +1,10 @@
 <?php
 
-namespace Inspector\Test;
+namespace Inspector\Test\Analysis\Checker\BadPractice;
 
 use PhpParser\Node;
-use Inspector\Analysis\FlawDetection\GotoDetector;
+use Inspector\Test\TestCase;
+use Inspector\Analysis\Checker\BadPractice\GotoDetector;
 use Inspector\Analysis\Exception\GotoDetectedException;
 
 class GotoDetectorTest extends TestCase

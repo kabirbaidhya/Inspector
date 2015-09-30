@@ -1,10 +1,11 @@
 <?php
 
-namespace Inspector\Analysis\FlawDetection;
+namespace Inspector\Analysis\Checker\BadPractice;
 
 use PhpParser\Node;
-use Inspector\Analysis\Exception\GotoDetectedException;
 use PhpParser\Node\Stmt\Goto_;
+use Inspector\Analysis\Checker\CheckerInterface;
+use Inspector\Analysis\Exception\GotoDetectedException;
 
 /**
  * Detects the use of die() or exit() from the code
